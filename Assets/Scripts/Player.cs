@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float JumpForce;
     public bool CanJump;
     public bool isAttacking;
+    public bool TakingDamage;
 
     private Rigidbody2D rig;
     private Animator anim;
@@ -46,7 +47,7 @@ public class Player : MonoBehaviour
 
         rig.velocity = new Vector2(movement.x * Speed, rig.velocity.y);
 
-        anim.SetBool("IsMoving", movement.x != 0);
+        anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
         sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
     }
 
@@ -97,6 +98,24 @@ public class Player : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             CanJump = false;
+            anim.SetBool("IsJumping", true);
+            anim.SetBool("IsMoving", false);
         }
+    }
+
+    public IEnumerator Knockback(float knockDur, float knockbackPwrY,float knobackPwrX, Vector3 knockbackDir){
+ 
+        float timer = 0;
+ 
+        while( knockDur > timer){
+ 
+            timer+=Time.deltaTime;
+ 
+            rig.AddForce(new Vector2(knockbackDir.x * knobackPwrX, knockbackDir.y * knockbackPwrY));
+ 
+        }
+ 
+        yield return 0;
+ 
     }
 }
