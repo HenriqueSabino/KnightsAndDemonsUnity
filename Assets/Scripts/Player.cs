@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
     public float Speed;
-
     public float JumpForce;
-
-    public bool IsJumping;
+    public bool CanJump;
+    public bool isAttacking;
 
     private Rigidbody2D rig;
-
     private Animator anim;
+    private SpriteRenderer sprite;
+    private Vector3 movement;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 
@@ -26,58 +34,69 @@ public class Player : MonoBehaviour
     {
         Move();
         Jump();
+        Attack();
     }
 
     void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * Speed;
+        Vector3 movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
 
-        if(Input.GetAxis("Horizontal") > 0f)
-        {
-            anim.SetBool("IsMove", true);
-            transform.eulerAngles = new Vector3(0f,0f,0f);
-        }
+        if (isAttacking)
+            movement = Vector3.zero;
 
-        if(Input.GetAxis("Horizontal") < 0f)
-        {
-            anim.SetBool("IsMove", true);
-            transform.eulerAngles = new Vector3(0f,180,0f);
-        }
+        rig.velocity = new Vector2(movement.x * Speed, rig.velocity.y);
 
-        if(Input.GetAxis("Horizontal") == 0f)
-        {
-            anim.SetBool("IsMove", false);
-        }
+        anim.SetBool("IsMoving", movement.x != 0);
+        sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
     }
 
     void Jump()
     {
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
-            if(!IsJumping)
+            if (CanJump)
             {
                 rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
-                anim.SetBool("IsJump", true);
+                anim.SetBool("IsJumping", true);
+                CanJump = false;
             }
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void Attack()
     {
-        if(collision.gameObject.layer == 6)
+        if (!isAttacking && (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(0)))
         {
-            IsJumping = false;
-            anim.SetBool("IsJump", false);
+            isAttacking = true;
+            anim.SetTrigger("SwordAttack");
+        }
+    }
+
+    public void ResetAttack()
+    {
+        isAttacking = false;
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == 6)
+        {
+            foreach (var contact in collision.contacts)
+            {
+                if (contact.normal == Vector2.up)
+                {
+                    CanJump = true;
+                    anim.SetBool("IsJumping", false);
+                }
+            }
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6)
         {
-            IsJumping = true;
-            anim.SetBool("IsMove", false);
+            CanJump = false;
         }
     }
 }
