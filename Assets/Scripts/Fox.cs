@@ -11,6 +11,7 @@ public class Fox : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
     private bool TakingDamage;
+    private int Health = 3;
 
     private float KnockDur = 1;
     private float KnockPow = 2;
@@ -45,39 +46,33 @@ public class Fox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == 8)
+        if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
         {
-            TakingDamage = true;
-            int sign = (int)Mathf.Sign(Target.position.x - transform.position.x);
-            rigidbody2D.AddForce(new Vector2(sign * 2, 2));
-            if(rigidbody2D.transform.position.x > Target.position.x)
-                StartCoroutine(Knockback(KnockDur,KnockPow,0.5f,rigidbody2D.transform.position));
-            else
-                StartCoroutine(Knockback(KnockDur,KnockPow,-0.5f,rigidbody2D.transform.position));
-        }
+            Health--;
 
-        if(other.gameObject.tag == "Player")
-        {
-            if(rigidbody2D.transform.position.x > Target.position.x)
-                StartCoroutine(Player.instance.Knockback(KnockDur,KnockPow,-3,Target.position));
+            if (Health > 0)
+            {
+                Vector3 knockDir = transform.position - other.transform.position;
+
+                StartCoroutine(Knockback(KnockDur, KnockPow, knockDir));
+            }
             else
-                StartCoroutine(Player.instance.Knockback(KnockDur,KnockPow,3,Target.position));
+            {
+                Destroy(gameObject);
+            }
+        }
+        else if (other.CompareTag("Player"))
+        {
+            Player.instance.TakeDamage(2, other.transform.position - transform.position);
         }
     }
 
-    public IEnumerator Knockback(float knockDur, float knockbackPwrY,float knobackPwrX, Vector3 knockbackDir){
- 
-        float timer = 0;
- 
-        while( knockDur > timer){
- 
-            timer+=Time.deltaTime;
- 
-            rigidbody2D.AddForce(new Vector2(knockbackDir.x * knobackPwrX, knockbackDir.y * knockbackPwrY));
- 
-        }
- 
-        yield return 0;
- 
+    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
+    {
+        TakingDamage = true;
+        rigidbody2D.AddForce(new Vector2(Mathf.Sign(knockbackDir.x) * knockbackPwr, knockbackPwr), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(knockDur);
+
+        TakingDamage = false;
     }
 }

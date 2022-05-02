@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public bool CanJump;
     public bool isAttacking;
     public bool TakingDamage;
+    public int Health { get; private set; } = 100;
+    public int Lives { get; private set; } = 3;
 
     private Rigidbody2D rig;
     private Animator anim;
@@ -36,6 +38,12 @@ public class Player : MonoBehaviour
         Move();
         Jump();
         Attack();
+
+        if (transform.position.y < -20)
+        {
+            print($"Player lives: {--Lives}");
+            transform.position = new Vector3(4.21f, 10, 0);
+        }
     }
 
     void Move()
@@ -73,6 +81,15 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int damage, Vector3 knockDir)
+    {
+        float knobackPwr = 4;
+        Health -= damage;
+        print($"Player health: {Health}");
+
+        StartCoroutine(Knockback(1, knobackPwr, knobackPwr, knockDir));
+    }
+
     public void ResetAttack()
     {
         isAttacking = false;
@@ -103,19 +120,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    public IEnumerator Knockback(float knockDur, float knockbackPwrY,float knobackPwrX, Vector3 knockbackDir){
- 
-        float timer = 0;
- 
-        while( knockDur > timer){
- 
-            timer+=Time.deltaTime;
- 
-            rig.AddForce(new Vector2(knockbackDir.x * knobackPwrX, knockbackDir.y * knockbackPwrY));
- 
-        }
- 
-        yield return 0;
- 
+    public IEnumerator Knockback(float knockDur, float knockbackPwrY, float knobackPwrX, Vector3 knockbackDir)
+    {
+        TakingDamage = true;
+
+        rig.AddForce(new Vector2(Mathf.Sign(knockbackDir.x) * knobackPwrX, knockbackPwrY), ForceMode2D.Impulse);
+        yield return new WaitForSeconds(knockDur);
+
+        TakingDamage = false;
     }
 }
