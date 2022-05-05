@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator anim;
-    private SpriteRenderer sprite;
     private Vector3 movement;
 
     void Awake()
@@ -28,7 +27,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
     }
 
@@ -56,7 +54,11 @@ public class Player : MonoBehaviour
         rig.velocity = new Vector2(movement.x * Speed, rig.velocity.y);
 
         anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
-        sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
+
+        if (movement.x < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        else if (movement.x > 0)
+            transform.rotation = Quaternion.identity;
     }
 
     void Jump()
@@ -101,7 +103,7 @@ public class Player : MonoBehaviour
         {
             foreach (var contact in collision.contacts)
             {
-                if (contact.normal == Vector2.up)
+                if (contact.normal.normalized == Vector2.up)
                 {
                     CanJump = true;
                     anim.SetBool("IsJumping", false);

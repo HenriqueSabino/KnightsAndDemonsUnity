@@ -1,7 +1,31 @@
 fileFormatVersion: 2
 guid: f30a68c44eace4e4e941ce82e6c772f0
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -3722442036602986101
+    second: OverworldGround3_0
+  - first:
+      213: -6504883881817719348
+    second: OverworldGround3_1
+  - first:
+      213: 3647496900120087363
+    second: OverworldGround3_2
+  - first:
+      213: 5607304569549127092
+    second: OverworldGround3_3
+  - first:
+      213: 8515004296752228493
+    second: OverworldGround3_4
+  - first:
+      213: -3672098952497234025
+    second: OverworldGround3_5
+  - first:
+      213: -2757847707048141321
+    second: OverworldGround3_6
+  - first:
+      213: -4059260546854753742
+    second: OverworldGround3_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -24,7 +48,6 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -120,18 +143,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 75
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 086f192d8f8ba734b935b2e43ce2a8c5
-      internalID: -1068223772
+      spriteID: b812c47a0ba375cc0800000000000000
+      internalID: -3722442036602986101
       vertices: []
       indices: 
       edges: []
@@ -141,18 +164,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 75
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8207bceb679645048b5e210175565f2d
-      internalID: -1537478127
+      spriteID: ccd3717e2920ab5a0800000000000000
+      internalID: -6504883881817719348
       vertices: []
       indices: 
       edges: []
@@ -162,18 +185,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 75
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bed2fde00b4651d42844e3326672e847
-      internalID: -1760976645
+      spriteID: 34b0ffafa138e9230800000000000000
+      internalID: 3647496900120087363
       vertices: []
       indices: 
       edges: []
@@ -183,18 +206,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 43
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a2449c9800fdc84eb62f0ccf69da901
-      internalID: 1319081791
+      spriteID: 4bd76671cc521dd40800000000000000
+      internalID: 5607304569549127092
       vertices: []
       indices: 
       edges: []
@@ -206,16 +229,16 @@ TextureImporter:
         x: 32
         y: 32
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 25
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7be5d93d934c9e4fade94e4d1519b2a
-      internalID: -1157096895
+      spriteID: d8867d02b4f5b2670800000000000000
+      internalID: 8515004296752228493
       vertices: []
       indices: 
       edges: []
@@ -227,16 +250,16 @@ TextureImporter:
         x: 64
         y: 32
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 25
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f33a344debec994b92f02d3424a9b27
-      internalID: 285053425
+      spriteID: 79f715455751a0dc0800000000000000
+      internalID: -3672098952497234025
       vertices: []
       indices: 
       edges: []
@@ -248,16 +271,16 @@ TextureImporter:
         x: 0
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 25
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f42cabf37b856e42a402e571cde67a8
-      internalID: -342733478
+      spriteID: 7fd15c44f182ab9d0800000000000000
+      internalID: -2757847707048141321
       vertices: []
       indices: 
       edges: []
@@ -269,16 +292,16 @@ TextureImporter:
         x: 32
         y: 0
         width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 25
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3162125b42d0d498a4f4cb47ca26bd
-      internalID: -672398454
+      spriteID: 23ae6fd1a0c9aa7c0800000000000000
+      internalID: -4059260546854753742
       vertices: []
       indices: 
       edges: []
@@ -293,15 +316,6 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      OverworldGround3_2: -1760976645
-      OverworldGround3_3: 1319081791
-      OverworldGround3_7: -672398454
-      OverworldGround3_0: -1068223772
-      OverworldGround3_1: -1537478127
-      OverworldGround3_4: -1157096895
-      OverworldGround3_5: 285053425
-      OverworldGround3_6: -342733478
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

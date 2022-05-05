@@ -44,18 +44,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02064848, y: -0.09265387}
+  m_Offset: {x: 0.203125, y: 0.40625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5625, y: 1.5625}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0.40625, y: 0.8125}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32948017, y: 0.8124449}
+  m_Size: {x: 0.40625, y: 0.8125}
   m_EdgeRadius: 0
 --- !u!1 &2990678476177620597
 GameObject:
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.018288612, y: 0.35114455}
+  m_Offset: {x: 0.7610324, y: 0.8619905}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -112,7 +112,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5194016, y: 0.79516554}
+  m_Size: {x: 1.531999, y: 0.7926625}
   m_EdgeRadius: 0
 --- !u!1 &4766309333896125171
 GameObject:
@@ -235,10 +235,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47f6fedeae4c0b48bc47fd8467ac050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 5
-  JumpForce: 5
+  Speed: 3
+  JumpForce: 6
   CanJump: 0
   isAttacking: 0
+  TakingDamage: 0
 --- !u!95 &4766309333896125177
 Animator:
   serializedVersion: 3
@@ -271,16 +272,16 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02064848, y: -0.09265387}
+  m_Offset: {x: 0.203125, y: 0.40625}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5625, y: 1.5625}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0.40625, y: 0.8125}
     newSize: {x: 0.5, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.32948017, y: 0.8124449}
+  m_Size: {x: 0.40625, y: 0.8125}
   m_EdgeRadius: 0
