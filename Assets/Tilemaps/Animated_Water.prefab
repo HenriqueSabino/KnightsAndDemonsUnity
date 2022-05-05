@@ -28,7 +28,6 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6524407413230135818}
   m_RootOrder: 0
@@ -56,23 +55,23 @@ Tilemap:
   - first: {x: -1, y: 0, z: 0}
     second:
       m_AnimatedSprites:
-      - {fileID: -1070326401, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -1087709354, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: 2026642645, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -685833441, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -1483329709, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -1248138905, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -320521336, guid: a158fa9625e0de84da33a921c8834793, type: 3}
-      - {fileID: -615438608, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: 6049605792901559095, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: -5882170695943828418, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: 7591774343886807129, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: 8088830456793213489, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: 4177692092066526168, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: 8954592487278907307, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: -4906324669642958461, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+      - {fileID: -4272997025716492783, guid: a158fa9625e0de84da33a921c8834793, type: 3}
       m_AnimationSpeed: 1
       m_AnimationTimeOffset: 0
       m_IsLooping: 1
   m_TileAssetArray:
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: f11ec01d84a91274bbc1f145318e62cc, type: 2}
+    m_Data: {fileID: 11400000, guid: d0210f5911f1fed4ebc69ed1e82d937f, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 1
-    m_Data: {fileID: -1070326401, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+    m_Data: {fileID: 6049605792901559095, guid: a158fa9625e0de84da33a921c8834793, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -130,7 +129,6 @@ TilemapRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 0
-  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
@@ -178,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6524407413230135818}
   - component: {fileID: 4127238667903416267}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Animated_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +193,6 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8477745639175289901}
   m_Father: {fileID: 0}
@@ -213,7 +210,7 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &863290870744147610
+--- !u!114 &6084687620326505067
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
