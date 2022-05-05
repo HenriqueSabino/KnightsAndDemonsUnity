@@ -83,7 +83,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage, Vector3 knockDir)
     {
-        float knobackPwr = 4;
+        float knobackPwr = 5;
         Health -= damage;
         print($"Player health: {Health}");
 

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710e4357b25663f4ba2435427cbf2a96, type: 3}
+  m_Name: Animated_Water
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: -1070326401, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -1087709354, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: 2026642645, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -685833441, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -1483329709, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -1248138905, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -320521336, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  - {fileID: -615438608, guid: a158fa9625e0de84da33a921c8834793, type: 3}
+  minSpeed: 1
+  maxSpeed: 1

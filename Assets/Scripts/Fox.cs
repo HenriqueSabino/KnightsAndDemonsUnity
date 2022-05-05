@@ -14,7 +14,7 @@ public class Fox : MonoBehaviour
     private int Health = 3;
 
     private float KnockDur = 1;
-    private float KnockPow = 2;
+    private float KnockPow = 5;
 
     // Start is called before the first frame update
     void Start()
