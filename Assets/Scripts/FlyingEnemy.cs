@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fox : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour
 {
     public Transform Target;
     public float Speed;
@@ -11,6 +11,7 @@ public class Fox : MonoBehaviour
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
     private bool TakingDamage;
+    private bool Attacking;
     public int Health = 3;
     public int Damage = 2;
 
@@ -31,16 +32,21 @@ public class Fox : MonoBehaviour
     {
         if (sprite.isVisible)
         {
-            int sign = (int)Mathf.Sign(Target.position.x - transform.position.x);
+            float dist = Vector3.Distance(transform.position, Target.position);
 
-            target = Target.position + new Vector3(sign, 0, 0);
-
-            if (sign > 0)
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            else if (sign < 0)
-                transform.rotation = Quaternion.identity;
-
-            rigidbody2D.velocity = new Vector2(sign * Speed, rigidbody2D.velocity.y);
+            if (dist > 2)
+            {
+                rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed;
+            }
+            else if (!Attacking)
+            {
+                Attacking = true;
+                rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed * 3;
+            }
+            else if (dist < 0.1f && Attacking)
+            {
+                rigidbody2D.velocity = -transform.position.normalized * Speed;
+            }
         }
     }
 

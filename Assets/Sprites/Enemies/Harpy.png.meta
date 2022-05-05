@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 7ae198c3120205a49a12c57eeec7e6e6
+guid: 2438a24f0d137034880def0ae02a9b2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1791904589581890566
-    second: Fox_0
+      213: -9145902702143361895
+    second: Harpy_0
   - first:
-      213: 2193286503029695119
-    second: Fox_1
+      213: 5068959917763539332
+    second: Harpy_1
   - first:
-      213: -1141285476458820233
-    second: Fox_2
+      213: -8838730278785272326
+    second: Harpy_2
   - first:
-      213: 2658217922050601341
-    second: Fox_3
+      213: 7949177830593167964
+    second: Harpy_3
+  - first:
+      213: 5091081903713480559
+    second: Harpy_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,13 +130,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fox_0
+      name: Harpy_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 30
-        height: 15
+        x: 6
+        y: 67
+        width: 23
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,20 +144,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 604bb65fabf1ed810800000000000000
-      internalID: 1791904589581890566
+      spriteID: 99ca57013f9331180800000000000000
+      internalID: -9145902702143361895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_1
+      name: Harpy_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 31
-        height: 16
+        x: 38
+        y: 67
+        width: 24
+        height: 22
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +165,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f826eb7347e107e10800000000000000
-      internalID: 2193286503029695119
+      spriteID: 4813dfe4030985640800000000000000
+      internalID: 5068959917763539332
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_2
+      name: Harpy_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 31
-        height: 17
+        x: 3
+        y: 34
+        width: 28
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d0c5ce7e65920f0800000000000000
-      internalID: -1141285476458820233
+      spriteID: af5b38b14a5865580800000000000000
+      internalID: -8838730278785272326
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_3
+      name: Harpy_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 30
-        height: 15
+        x: 38
+        y: 36
+        width: 24
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +207,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d713763cd13e3e420800000000000000
-      internalID: 2658217922050601341
+      spriteID: c528ae0de17215e60800000000000000
+      internalID: 7949177830593167964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Harpy_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 3
+        width: 24
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6fe249840827a640800000000000000
+      internalID: 5091081903713480559
       vertices: []
       indices: 
       edges: []

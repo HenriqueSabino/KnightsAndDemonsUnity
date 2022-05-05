@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: 7ae198c3120205a49a12c57eeec7e6e6
+guid: a21529821bf65c541af5e686caa3f88e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1791904589581890566
-    second: Fox_0
+      213: -5899927303015767666
+    second: Ghost_0
   - first:
-      213: 2193286503029695119
-    second: Fox_1
+      213: 6824852377700625651
+    second: Ghost_1
   - first:
-      213: -1141285476458820233
-    second: Fox_2
+      213: -1720829479360743675
+    second: Ghost_2
   - first:
-      213: 2658217922050601341
-    second: Fox_3
+      213: 961504700816514905
+    second: Ghost_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -127,13 +127,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fox_0
+      name: Ghost_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 30
-        height: 15
+        x: 4
+        y: 36
+        width: 20
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,20 +141,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 604bb65fabf1ed810800000000000000
-      internalID: 1791904589581890566
+      spriteID: e81ed17806f3f1ea0800000000000000
+      internalID: -5899927303015767666
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_1
+      name: Ghost_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 31
-        height: 16
+        x: 36
+        y: 34
+        width: 18
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f826eb7347e107e10800000000000000
-      internalID: 2193286503029695119
+      spriteID: 3fc6351f31fb6be50800000000000000
+      internalID: 6824852377700625651
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_2
+      name: Ghost_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 31
-        height: 17
+        x: 4
+        y: 5
+        width: 22
+        height: 23
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -183,20 +183,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 77d0c5ce7e65920f0800000000000000
-      internalID: -1141285476458820233
+      spriteID: 507bea3b4b26e18e0800000000000000
+      internalID: -1720829479360743675
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Fox_3
+      name: Ghost_3
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 30
-        height: 15
+        x: 36
+        y: 4
+        width: 23
+        height: 24
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -204,8 +204,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d713763cd13e3e420800000000000000
-      internalID: 2658217922050601341
+      spriteID: 95f590e5e63f75d00800000000000000
+      internalID: 961504700816514905
       vertices: []
       indices: 
       edges: []
