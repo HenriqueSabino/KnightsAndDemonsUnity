@@ -36,10 +36,18 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
-        Jump();
-        Attack();
+        if (TakingDamage && rig.velocity.y == 0)
+        {
+            TakingDamage = false;
+        }
 
+        if (!TakingDamage)
+        {
+            Move();
+            Jump();
+        }
+
+        Attack();
         if (transform.position.y < -20)
         {
             print($"Player lives: {--Lives}");
@@ -67,7 +75,9 @@ public class Player : MonoBehaviour
         {
             if (CanJump)
             {
-                rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
+                Vector2 v = rig.velocity;
+                v.y += 5;
+                rig.velocity = v;
                 anim.SetBool("IsJumping", true);
                 CanJump = false;
             }
@@ -91,7 +101,7 @@ public class Player : MonoBehaviour
             print($"Player health: {Health}");
 
             TakingDamage = true;
-            rig.velocity = Vector2.right * knockDir * 10 + Vector2.up * 5;
+            rig.velocity = Vector2.right * knockDir.x * 3 + Vector2.up * 2;
             StartCoroutine(Invulnarability());
         }
     }
@@ -117,7 +127,6 @@ public class Player : MonoBehaviour
                 if (contact.normal.normalized == Vector2.up)
                 {
                     CanJump = true;
-                    TakingDamage = false;
                     anim.SetBool("IsJumping", false);
                 }
             }

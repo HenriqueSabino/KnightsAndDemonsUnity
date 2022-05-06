@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
-  Speed: 3
+  Speed: 1.5
   rigidbody2D: {fileID: 5743717408445702330}
   Health: 12
   Damage: 5

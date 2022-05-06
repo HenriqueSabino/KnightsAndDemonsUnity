@@ -85,7 +85,7 @@ public class FlyingEnemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
         {
@@ -105,7 +105,7 @@ public class FlyingEnemy : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(Damage, (other.transform.position - transform.position).normalized);
+            Player.instance.TakeDamage(Damage, (other.transform.position + Vector3.up * 0.5f - transform.position).normalized);
         }
     }
 }
