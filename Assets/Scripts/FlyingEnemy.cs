@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlyingEnemy : MonoBehaviour
 {
     public Transform Target;
+    private Vector3 TargetOffset;
     public float Speed;
 
     [SerializeField]
@@ -15,7 +16,6 @@ public class FlyingEnemy : MonoBehaviour
     public int Health = 3;
     public int Damage = 2;
 
-    private float KnockDur = 1;
     private float KnockPow = 5;
 
     private Vector3 target;
@@ -24,29 +24,56 @@ public class FlyingEnemy : MonoBehaviour
     void Start()
     {
         Target = Player.instance.transform;
+        TargetOffset = new Vector3(2, 0.5f);
         sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (sprite.isVisible)
+        if (TakingDamage)
         {
-            float dist = Vector3.Distance(transform.position, Target.position);
+            rigidbody2D.velocity = Target.position.x > transform.position.x ? Vector2.left * KnockPow : Vector2.right * KnockPow;
 
-            if (dist > 2)
+            if (Mathf.Abs(Target.position.x - transform.position.x) >= 3)
             {
-                rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed;
+                TakingDamage = false;
+                rigidbody2D.velocity = Vector2.zero;
             }
-            else if (!Attacking)
+        }
+
+        if (Attacking)
+        {
+            float dist = Mathf.Abs(Target.position.x - transform.position.x);
+            if (dist <= 0.1f)
             {
+                Attacking = false;
+                rigidbody2D.velocity = Vector2.zero;
+            }
+            else if (dist >= 2.5f)
+            {
+                TargetOffset.x *= -1;
+                Attacking = false;
+                rigidbody2D.velocity = Vector2.zero;
+            }
+        }
+
+        if (sprite.isVisible && !TakingDamage && !Attacking)
+        {
+
+            if (Vector3.Distance(Target.position + TargetOffset, transform.position) <= 0.1f)
+            {
+                TargetOffset.x *= -1;
+                rigidbody2D.velocity = Vector2.zero;
+                rigidbody2D.AddForce((Target.position - transform.position + Vector3.up * 0.5f).normalized * 6, ForceMode2D.Impulse);
                 Attacking = true;
-                rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed * 3;
             }
-            else if (dist < 0.1f && Attacking)
+
+            if (!Attacking)
             {
-                rigidbody2D.velocity = -transform.position.normalized * Speed;
+                rigidbody2D.velocity = (Target.position + TargetOffset - transform.position).normalized * Speed;
             }
+            sprite.flipX = (Target.position - transform.position).x > 0;
         }
     }
 
@@ -62,13 +89,14 @@ public class FlyingEnemy : MonoBehaviour
     {
         if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
         {
-            Health--;
+            if (other.CompareTag("Arrow"))
+                Health--;
+            else
+                Health -= 2;
 
             if (Health > 0)
             {
-                Vector3 knockDir = transform.position - other.transform.position;
-
-                StartCoroutine(Knockback(KnockDur, KnockPow, knockDir));
+                TakingDamage = true;
             }
             else
             {
@@ -77,16 +105,7 @@ public class FlyingEnemy : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(Damage, other.transform.position - transform.position);
+            Player.instance.TakeDamage(Damage, (other.transform.position - transform.position).normalized);
         }
-    }
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
-    {
-        TakingDamage = true;
-        rigidbody2D.AddForce(new Vector2(Mathf.Sign(knockbackDir.x) * knockbackPwr, knockbackPwr), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(knockDur);
-
-        TakingDamage = false;
     }
 }

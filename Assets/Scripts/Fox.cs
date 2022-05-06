@@ -10,45 +10,42 @@ public class Fox : MonoBehaviour
     [SerializeField]
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
+    private Vector3 TargetOffset;
     private bool TakingDamage;
     public int Health = 3;
     public int Damage = 2;
-
-    private float KnockDur = 1;
     private float KnockPow = 5;
-
-    private Vector3 target;
 
     // Start is called before the first frame update
     void Start()
     {
         Target = Player.instance.transform;
+        TargetOffset = new Vector3(1.5f, 0);
         sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (sprite.isVisible)
-        {
-            int sign = (int)Mathf.Sign(Target.position.x - transform.position.x);
-
-            target = Target.position + new Vector3(sign, 0, 0);
-
-            if (sign > 0)
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            else if (sign < 0)
-                transform.rotation = Quaternion.identity;
-
-            rigidbody2D.velocity = new Vector2(sign * Speed, rigidbody2D.velocity.y);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.layer == 6)
+        if (TakingDamage && rigidbody2D.velocity.y == 0)
         {
             TakingDamage = false;
+        }
+
+        if (sprite.isVisible && !TakingDamage)
+        {
+            float dist = Target.position.x + TargetOffset.x - transform.position.x;
+
+            if (!TakingDamage && Mathf.Abs(dist) <= 0.3f)
+            {
+                TargetOffset *= -1;
+            }
+
+            int sign = (int)Mathf.Sign(dist);
+
+            sprite.flipX = sign != 0 ? sign > 0 : sprite.flipX;
+
+            rigidbody2D.velocity = new Vector2(sign * Speed, rigidbody2D.velocity.y);
         }
     }
 
@@ -56,13 +53,15 @@ public class Fox : MonoBehaviour
     {
         if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
         {
-            Health--;
+            if (other.CompareTag("Arrow"))
+                Health--;
+            else
+                Health -= 2;
 
             if (Health > 0)
             {
-                Vector3 knockDir = transform.position - other.transform.position;
-
-                StartCoroutine(Knockback(KnockDur, KnockPow, knockDir));
+                TakingDamage = true;
+                rigidbody2D.velocity = Target.position.x > transform.position.x ? new Vector2(-1, 0.5f) * KnockPow : new Vector2(1, 0.5f) * KnockPow;
             }
             else
             {
@@ -71,16 +70,7 @@ public class Fox : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(Damage, other.transform.position - transform.position);
+            Player.instance.TakeDamage(Damage, (other.transform.position - transform.position).normalized);
         }
-    }
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwr, Vector3 knockbackDir)
-    {
-        TakingDamage = true;
-        rigidbody2D.AddForce(new Vector2(Mathf.Sign(knockbackDir.x) * knockbackPwr, knockbackPwr), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(knockDur);
-
-        TakingDamage = false;
     }
 }

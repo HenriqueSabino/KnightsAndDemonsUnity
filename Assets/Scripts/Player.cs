@@ -15,7 +15,9 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator anim;
+    private SpriteRenderer sprite;
     private Vector3 movement;
+    private bool Invulnarable;
 
     void Awake()
     {
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -55,10 +58,7 @@ public class Player : MonoBehaviour
 
         anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
 
-        if (movement.x < 0)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        else if (movement.x > 0)
-            transform.rotation = Quaternion.identity;
+        sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
     }
 
     void Jump()
@@ -85,11 +85,22 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage, Vector3 knockDir)
     {
-        float knobackPwr = 5;
-        Health -= damage;
-        print($"Player health: {Health}");
+        if (!Invulnarable)
+        {
+            Health -= damage;
+            print($"Player health: {Health}");
 
-        StartCoroutine(Knockback(1, knobackPwr, knobackPwr, knockDir));
+            TakingDamage = true;
+            rig.velocity = Vector2.right * knockDir * 10 + Vector2.up * 5;
+            StartCoroutine(Invulnarability());
+        }
+    }
+
+    private IEnumerator Invulnarability()
+    {
+        Invulnarable = true;
+        yield return new WaitForSeconds(3);
+        Invulnarable = false;
     }
 
     public void ResetAttack()
@@ -106,6 +117,7 @@ public class Player : MonoBehaviour
                 if (contact.normal.normalized == Vector2.up)
                 {
                     CanJump = true;
+                    TakingDamage = false;
                     anim.SetBool("IsJumping", false);
                 }
             }
@@ -120,15 +132,5 @@ public class Player : MonoBehaviour
             anim.SetBool("IsJumping", true);
             anim.SetBool("IsMoving", false);
         }
-    }
-
-    public IEnumerator Knockback(float knockDur, float knockbackPwrY, float knobackPwrX, Vector3 knockbackDir)
-    {
-        TakingDamage = true;
-
-        rig.AddForce(new Vector2(Mathf.Sign(knockbackDir.x) * knobackPwrX, knockbackPwrY), ForceMode2D.Impulse);
-        yield return new WaitForSeconds(knockDur);
-
-        TakingDamage = false;
     }
 }
