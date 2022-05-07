@@ -12,6 +12,7 @@ public class Fox : MonoBehaviour
     private SpriteRenderer sprite;
     private Vector3 TargetOffset;
     private bool TakingDamage;
+    private bool IsAlive = true;
     public int Health = 3;
     public int Damage = 2;
     private float KnockPow = 5;
@@ -32,7 +33,7 @@ public class Fox : MonoBehaviour
             TakingDamage = false;
         }
 
-        if (sprite.isVisible && !TakingDamage)
+        if (sprite.isVisible && !TakingDamage && IsAlive)
         {
             float dist = Target.position.x + TargetOffset.x - transform.position.x;
 
@@ -65,6 +66,7 @@ public class Fox : MonoBehaviour
             }
             else
             {
+                IsAlive = false;
                 Destroy(gameObject);
             }
         }

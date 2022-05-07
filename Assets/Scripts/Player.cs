@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class Player : MonoBehaviour
     public bool CanJump;
     public bool isAttacking;
     public bool TakingDamage;
+    public bool isAlive = true;
     public int Health { get; private set; } = 100;
     public int Lives { get; private set; } = 3;
+    public Collider2D GroundCollider;
 
     private Rigidbody2D rig;
     private Animator anim;
@@ -41,17 +44,25 @@ public class Player : MonoBehaviour
             TakingDamage = false;
         }
 
-        if (!TakingDamage)
+        if(isAlive)
         {
-            Move();
-            Jump();
+            if (!TakingDamage)
+            {
+                Move();
+                Jump();
+            }
+
+            Attack();
+        }
+        else
+        {
+            anim.SetBool("IsJumping", true);
         }
 
-        Attack();
         if (transform.position.y < -20)
         {
-            print($"Player lives: {--Lives}");
-            transform.position = new Vector3(4.21f, 10, 0);
+            GameManager.instance.PlayerDeath();
+            print($"Player lives: {Lives}");
         }
     }
 
@@ -101,15 +112,31 @@ public class Player : MonoBehaviour
             print($"Player health: {Health}");
 
             TakingDamage = true;
-            rig.velocity = Vector2.right * knockDir.x * 3 + Vector2.up * 2;
-            StartCoroutine(Invulnarability());
+
+            if(Health > 0)
+            {
+                rig.velocity = Vector2.right * knockDir.x * 3 + Vector2.up * 2;
+                StartCoroutine(Invulnarability());
+            }
+            else
+            {
+                isAlive = false;
+                GroundCollider.enabled = false;
+                rig.velocity = new Vector2 (0,5);
+            }
         }
     }
 
     private IEnumerator Invulnarability()
     {
         Invulnarable = true;
-        yield return new WaitForSeconds(3);
+        for (float i = 0f; i < 1.5f; i += 0.1f)
+        {
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
         Invulnarable = false;
     }
 
@@ -131,6 +158,11 @@ public class Player : MonoBehaviour
                 }
             }
         }
+
+        if(collision.gameObject.layer == LayerMask.NameToLayer("SpikeActive"))
+        {
+            TakeDamage(5, (transform.position + Vector3.up * 0.5f - collision.transform.position).normalized);
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -140,6 +172,14 @@ public class Player : MonoBehaviour
             CanJump = false;
             anim.SetBool("IsJumping", true);
             anim.SetBool("IsMoving", false);
+        }
+    }
+
+     void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("SpikeActive") && isAlive)
+        {
+            TakeDamage(50, (transform.position + Vector3.up * 0.5f - other.transform.position).normalized);
         }
     }
 }

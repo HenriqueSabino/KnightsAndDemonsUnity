@@ -201,6 +201,7 @@ MonoBehaviour:
   rigidbody2D: {fileID: 4379081046142900686}
   Health: 10
   Damage: 5
+  groundCollider: {fileID: 0}
 --- !u!61 &1412797055827784667
 BoxCollider2D:
   m_ObjectHideFlags: 0
