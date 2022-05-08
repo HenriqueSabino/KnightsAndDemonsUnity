@@ -102,6 +102,9 @@ public class FlyingEnemy : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            if (other.CompareTag("Arrow"))
+                Destroy(other.gameObject);
         }
         else if (other.CompareTag("Player"))
         {

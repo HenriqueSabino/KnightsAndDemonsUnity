@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Arrow
+  - Potion
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Characters
     uniqueID: 2095081463
+    locked: 0
+  - name: HUD
+    uniqueID: 3765941443
     locked: 0

@@ -13,8 +13,11 @@ public class Player : MonoBehaviour
     public bool TakingDamage;
     public bool isAlive = true;
     public int Health { get; private set; } = 100;
+    public int Arrows { get; private set; } = 10;
     public int Lives { get; private set; } = 3;
     public Collider2D GroundCollider;
+    public Transform ArrowSpawn;
+    public GameObject ArrowPrefab;
 
     private Rigidbody2D rig;
     private Animator anim;
@@ -44,7 +47,7 @@ public class Player : MonoBehaviour
             TakingDamage = false;
         }
 
-        if(isAlive)
+        if (isAlive)
         {
             if (!TakingDamage)
             {
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
             if (CanJump)
             {
                 Vector2 v = rig.velocity;
-                v.y += 5;
+                v.y += JumpForce;
                 rig.velocity = v;
                 anim.SetBool("IsJumping", true);
                 CanJump = false;
@@ -97,11 +100,27 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
-        if (!isAttacking && (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(0)))
+        if (!isAttacking)
         {
-            isAttacking = true;
-            anim.SetTrigger("SwordAttack");
+            if (Input.GetKeyDown(KeyCode.Q) || Input.GetMouseButtonDown(0))
+            {
+                isAttacking = true;
+                anim.SetTrigger("SwordAttack");
+            }
+            else if (Arrows > 0 && (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(1)))
+            {
+                isAttacking = true;
+                anim.SetTrigger("BowAttack");
+            }
         }
+    }
+
+    public void SpawnArrow()
+    {
+        // TODO: Object pooling
+        Instantiate(ArrowPrefab, ArrowSpawn.position, Quaternion.identity);
+        Arrows--;
+        GameManager.instance.UpdatePlayerArrows(Arrows);
     }
 
     public void TakeDamage(int damage, Vector3 knockDir)
@@ -109,11 +128,12 @@ public class Player : MonoBehaviour
         if (!Invulnarable)
         {
             Health -= damage;
-            print($"Player health: {Health}");
+            GameManager.instance.UpdatePlayerHealth(Health);
 
             TakingDamage = true;
+            isAttacking = false;
 
-            if(Health > 0)
+            if (Health > 0)
             {
                 rig.velocity = Vector2.right * knockDir.x * 3 + Vector2.up * 2;
                 StartCoroutine(Invulnarability());
@@ -122,9 +142,29 @@ public class Player : MonoBehaviour
             {
                 isAlive = false;
                 GroundCollider.enabled = false;
-                rig.velocity = new Vector2 (0,5);
+                rig.velocity = new Vector2(0, 5);
             }
         }
+    }
+
+    public void Heal(int amount)
+    {
+        Health += amount;
+
+        if (Health > 100)
+            Health = 100;
+
+        GameManager.instance.UpdatePlayerHealth(Health);
+    }
+
+    public void IncreaseArrows(int amount)
+    {
+        Arrows += amount;
+
+        if (Arrows > 20)
+            Arrows = 20;
+
+        GameManager.instance.UpdatePlayerArrows(Health);
     }
 
     private IEnumerator Invulnarability()
@@ -159,7 +199,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(collision.gameObject.layer == LayerMask.NameToLayer("SpikeActive"))
+        if (collision.gameObject.layer == LayerMask.NameToLayer("SpikeActive"))
         {
             TakeDamage(5, (transform.position + Vector3.up * 0.5f - collision.transform.position).normalized);
         }
@@ -172,14 +212,6 @@ public class Player : MonoBehaviour
             CanJump = false;
             anim.SetBool("IsJumping", true);
             anim.SetBool("IsMoving", false);
-        }
-    }
-
-     void OnTriggerStay2D(Collider2D other)
-    {
-        if(other.gameObject.layer == LayerMask.NameToLayer("SpikeActive") && isAlive)
-        {
-            TakeDamage(50, (transform.position + Vector3.up * 0.5f - other.transform.position).normalized);
         }
     }
 }

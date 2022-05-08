@@ -69,6 +69,9 @@ public class Fox : MonoBehaviour
                 IsAlive = false;
                 Destroy(gameObject);
             }
+
+            if (other.CompareTag("Arrow"))
+                Destroy(other.gameObject);
         }
         else if (other.CompareTag("Player"))
         {
