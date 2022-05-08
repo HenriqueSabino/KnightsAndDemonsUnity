@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public bool facingRight = true;
     public int Health { get; private set; } = 100;
     public int Arrows { get; private set; } = 10;
-    public int Lives { get; private set; }
+    public int Lives { get; private set; } = 3;
     public Collider2D GroundCollider;
     public Transform ArrowSpawn;
     public GameObject ArrowPrefab;
@@ -28,9 +28,26 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-        Lives = PlayerPrefs.GetInt("Lives");
         if (instance == null)
             instance = this;
+
+        if (PlayerPrefs.HasKey("Lives"))
+        {
+            Lives = PlayerPrefs.GetInt("Lives");
+            PlayerPrefs.DeleteKey("Lives");
+        }
+
+        if (PlayerPrefs.HasKey("Health"))
+        {
+            Health = PlayerPrefs.GetInt("Health");
+            PlayerPrefs.DeleteKey("Health");
+        }
+
+        if (PlayerPrefs.HasKey("Arrows"))
+        {
+            Arrows = PlayerPrefs.GetInt("Arrows");
+            PlayerPrefs.DeleteKey("Arrows");
+        }
     }
 
     // Start is called before the first frame update

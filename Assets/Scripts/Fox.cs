@@ -52,9 +52,20 @@ public class Fox : MonoBehaviour
             rigidbody2D.velocity = new Vector2(sign * Speed, rigidbody2D.velocity.y);
         }
 
-        if(!IsAlive)
+        if (!IsAlive)
         {
             anim.SetBool("IsDeath", true);
+        }
+    }
+
+    private IEnumerator BlinkSprite()
+    {
+        while (TakingDamage)
+        {
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -71,6 +82,7 @@ public class Fox : MonoBehaviour
             {
                 TakingDamage = true;
                 rigidbody2D.velocity = Target.position.x > transform.position.x ? new Vector2(-1, 0.5f) * KnockPow : new Vector2(1, 0.5f) * KnockPow;
+                StartCoroutine(BlinkSprite());
             }
             else
             {

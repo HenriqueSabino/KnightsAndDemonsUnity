@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text Health;
     public TMP_Text Lives;
     public TMP_Text Arrows;
+    public string NextSceneName;
 
     void Awake()
     {
@@ -28,15 +29,25 @@ public class GameManager : MonoBehaviour
         UpdatePlayerArrows(Player.instance.Arrows);
         UpdatePlayerLives(Player.instance.Lives);
     }
+
     public void PlayerDeath(int Lives)
     {
         PlayerLives = Lives;
         PlayerLives--;
         PlayerPrefs.SetInt("Lives", PlayerLives);
-        if(PlayerLives >= 0)
+        if (PlayerLives >= 0)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         else
             SceneManager.LoadScene("Game Over");
+    }
+
+    public void NextLevel()
+    {
+        PlayerPrefs.SetInt("Lives", Player.instance.Lives);
+        PlayerPrefs.SetInt("Health", Player.instance.Health);
+        PlayerPrefs.SetInt("Arrows", Player.instance.Arrows);
+
+        SceneManager.LoadScene(NextSceneName);
     }
 
     public void UpdatePlayerHealth(int health)

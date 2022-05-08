@@ -79,7 +79,7 @@ public class FlyingEnemy : MonoBehaviour
             sprite.flipX = (Target.position - transform.position).x > 0;
         }
 
-        if(!IsAlive)
+        if (!IsAlive)
         {
             anim.SetBool("IsDeath", true);
         }
@@ -90,6 +90,17 @@ public class FlyingEnemy : MonoBehaviour
         if (other.gameObject.layer == 6)
         {
             TakingDamage = false;
+        }
+    }
+
+    private IEnumerator BlinkSprite()
+    {
+        while (TakingDamage)
+        {
+            sprite.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            sprite.enabled = true;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
@@ -105,6 +116,7 @@ public class FlyingEnemy : MonoBehaviour
             if (Health > 0)
             {
                 TakingDamage = true;
+                StartCoroutine(BlinkSprite());
             }
             else
             {

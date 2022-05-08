@@ -9,11 +9,11 @@ public class ArrowScript : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
 
-        if(Player.instance.facingRight)
+        if (Player.instance.facingRight)
             GetComponent<Rigidbody2D>().velocity = Vector2.right * 5;
         else
         {
-            GetComponent<Rigidbody2D>().velocity = Vector2.right * -5;
+            GetComponent<Rigidbody2D>().velocity = Vector2.left * 5;
             sprite.flipX = true;
         }
     }

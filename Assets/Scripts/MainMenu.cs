@@ -6,14 +6,16 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-   public void PlayGame ()
-   {
-       PlayerPrefs.SetInt("Lives", 3);
-       SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-   }
+    public void PlayGame()
+    {
+        PlayerPrefs.DeleteKey("Lives");
+        PlayerPrefs.DeleteKey("Health");
+        PlayerPrefs.DeleteKey("Arrows");
+        SceneManager.LoadScene("Level1_1");
+    }
 
-   public void ExitGame ()
-   {
-       Application.Quit();
-   }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }
