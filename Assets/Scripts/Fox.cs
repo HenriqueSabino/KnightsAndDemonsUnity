@@ -10,12 +10,14 @@ public class Fox : MonoBehaviour
     [SerializeField]
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
+    private Animator anim;
     private Vector3 TargetOffset;
     private bool TakingDamage;
     private bool IsAlive = true;
     public int Health = 3;
     public int Damage = 2;
     private float KnockPow = 5;
+    public Collider2D GroundCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,7 @@ public class Fox : MonoBehaviour
         Target = Player.instance.transform;
         TargetOffset = new Vector3(1.5f, 0);
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,11 +51,16 @@ public class Fox : MonoBehaviour
 
             rigidbody2D.velocity = new Vector2(sign * Speed, rigidbody2D.velocity.y);
         }
+
+        if(!IsAlive)
+        {
+            anim.SetBool("IsDeath", true);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
+        if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack") && IsAlive)
         {
             if (other.CompareTag("Arrow"))
                 Health--;
@@ -67,7 +75,12 @@ public class Fox : MonoBehaviour
             else
             {
                 IsAlive = false;
-                Destroy(gameObject);
+                GroundCollider.enabled = false;
+                rigidbody2D.velocity = new Vector2(0, 5);
+                if (transform.position.y < -20)
+                {
+                    Destroy(gameObject);
+                }
             }
 
             if (other.CompareTag("Arrow"))
@@ -75,7 +88,8 @@ public class Fox : MonoBehaviour
         }
         else if (other.CompareTag("Player"))
         {
-            Player.instance.TakeDamage(Damage, (other.transform.position + Vector3.up * 0.5f - transform.position).normalized);
+            if (IsAlive)
+                Player.instance.TakeDamage(Damage, (other.transform.position + Vector3.up * 0.5f - transform.position).normalized);
         }
     }
 }

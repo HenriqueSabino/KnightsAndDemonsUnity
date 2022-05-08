@@ -26,11 +26,17 @@ public class GameManager : MonoBehaviour
     {
         UpdatePlayerHealth(Player.instance.Health);
         UpdatePlayerArrows(Player.instance.Arrows);
+        UpdatePlayerLives(Player.instance.Lives);
     }
-
-    public void PlayerDeath()
+    public void PlayerDeath(int Lives)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PlayerLives = Lives;
+        PlayerLives--;
+        PlayerPrefs.SetInt("Lives", PlayerLives);
+        if(PlayerLives >= 0)
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        else
+            SceneManager.LoadScene("Game Over");
     }
 
     public void UpdatePlayerHealth(int health)
@@ -45,5 +51,10 @@ public class GameManager : MonoBehaviour
     public void UpdatePlayerArrows(int arrows)
     {
         Arrows.text = $"x {arrows.ToString("D2")}";
+    }
+
+    public void UpdatePlayerLives(int lives)
+    {
+        Lives.text = $"x {lives.ToString("D2")}";
     }
 }

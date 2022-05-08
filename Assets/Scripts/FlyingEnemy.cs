@@ -11,8 +11,10 @@ public class FlyingEnemy : MonoBehaviour
     [SerializeField]
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;
+    private Animator anim;
     private bool TakingDamage;
     private bool Attacking;
+    private bool IsAlive = true;
     public int Health = 3;
     public int Damage = 2;
 
@@ -26,6 +28,7 @@ public class FlyingEnemy : MonoBehaviour
         Target = Player.instance.transform;
         TargetOffset = new Vector3(2, 0.5f);
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -42,7 +45,7 @@ public class FlyingEnemy : MonoBehaviour
             }
         }
 
-        if (Attacking)
+        if (Attacking && IsAlive)
         {
             float dist = Mathf.Abs(Target.position.x - transform.position.x);
             if (dist <= 0.1f)
@@ -58,7 +61,7 @@ public class FlyingEnemy : MonoBehaviour
             }
         }
 
-        if (sprite.isVisible && !TakingDamage && !Attacking)
+        if (sprite.isVisible && !TakingDamage && !Attacking && IsAlive)
         {
 
             if (Vector3.Distance(Target.position + TargetOffset, transform.position) <= 0.1f)
@@ -75,6 +78,11 @@ public class FlyingEnemy : MonoBehaviour
             }
             sprite.flipX = (Target.position - transform.position).x > 0;
         }
+
+        if(!IsAlive)
+        {
+            anim.SetBool("IsDeath", true);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -87,7 +95,7 @@ public class FlyingEnemy : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack"))
+        if (!TakingDamage && other.gameObject.layer == LayerMask.NameToLayer("Attack") && IsAlive)
         {
             if (other.CompareTag("Arrow"))
                 Health--;
@@ -100,13 +108,19 @@ public class FlyingEnemy : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+                IsAlive = false;
+                rigidbody2D.velocity = new Vector2(0, 5);
+                rigidbody2D.gravityScale = 1;
+                if (transform.position.y < -20)
+                {
+                    Destroy(gameObject);
+                }
             }
 
             if (other.CompareTag("Arrow"))
                 Destroy(other.gameObject);
         }
-        else if (other.CompareTag("Player"))
+        else if (other.CompareTag("Player") && IsAlive)
         {
             Player.instance.TakeDamage(Damage, (other.transform.position + Vector3.up * 0.5f - transform.position).normalized);
         }

@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     public bool isAttacking;
     public bool TakingDamage;
     public bool isAlive = true;
+    public bool facingRight = true;
     public int Health { get; private set; } = 100;
     public int Arrows { get; private set; } = 10;
-    public int Lives { get; private set; } = 3;
+    public int Lives { get; private set; }
     public Collider2D GroundCollider;
     public Transform ArrowSpawn;
     public GameObject ArrowPrefab;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
+        Lives = PlayerPrefs.GetInt("Lives");
         if (instance == null)
             instance = this;
     }
@@ -64,8 +66,7 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < -20)
         {
-            GameManager.instance.PlayerDeath();
-            print($"Player lives: {Lives}");
+            GameManager.instance.PlayerDeath(Lives);
         }
     }
 
@@ -81,6 +82,15 @@ public class Player : MonoBehaviour
         anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
 
         sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
+
+        if (movement.x > 0)
+        {
+            facingRight = true;
+        }
+        else if (movement.x < 0)
+        {
+            facingRight = false;
+        }
     }
 
     void Jump()
@@ -125,7 +135,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage, Vector3 knockDir)
     {
-        if (!Invulnarable)
+        if (!Invulnarable && isAlive)
         {
             Health -= damage;
             GameManager.instance.UpdatePlayerHealth(Health);
@@ -164,7 +174,7 @@ public class Player : MonoBehaviour
         if (Arrows > 20)
             Arrows = 20;
 
-        GameManager.instance.UpdatePlayerArrows(Health);
+        GameManager.instance.UpdatePlayerArrows(Arrows);
     }
 
     private IEnumerator Invulnarability()
