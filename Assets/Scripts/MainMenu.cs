@@ -8,10 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        PlayerPrefs.DeleteKey("Lives");
-        PlayerPrefs.DeleteKey("Health");
-        PlayerPrefs.DeleteKey("Arrows");
-        SceneManager.LoadScene("Level1_1");
+        SceneManager.LoadScene("Cutscene1");
     }
 
     public void ExitGame()
