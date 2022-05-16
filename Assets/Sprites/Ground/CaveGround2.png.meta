@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: f30a68c44eace4e4e941ce82e6c772f0
+guid: 3c6bd7b16f82cb7429b915fb3aa70887
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3722442036602986101
-    second: OverworldGround3_0
+      213: 6742656501410657194
+    second: CaveGround2_0
   - first:
-      213: -6504883881817719348
-    second: OverworldGround3_1
+      213: 6949545932123580144
+    second: CaveGround2_1
   - first:
-      213: 3647496900120087363
-    second: OverworldGround3_2
+      213: 263926590094835869
+    second: CaveGround2_2
   - first:
-      213: 5607304569549127092
-    second: OverworldGround3_3
+      213: 973187627917294391
+    second: CaveGround2_3
   - first:
-      213: 8515004296752228493
-    second: OverworldGround3_4
+      213: 1008246930296044640
+    second: CaveGround2_4
   - first:
-      213: -3672098952497234025
-    second: OverworldGround3_5
+      213: 494091551646609700
+    second: CaveGround2_5
   - first:
-      213: -2757847707048141321
-    second: OverworldGround3_6
+      213: -4198292385491666376
+    second: CaveGround2_6
   - first:
-      213: -4059260546854753742
-    second: OverworldGround3_7
+      213: 3761569457727034758
+    second: CaveGround2_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -112,31 +112,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: 4
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: 4
@@ -151,7 +127,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OverworldGround3_0
+      name: CaveGround2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -162,21 +138,17 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 16, y: 7}
-        - {x: -16, y: 7}
-        - {x: -16, y: 5}
-        - {x: 16, y: 5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b812c47a0ba375cc0800000000000000
-      internalID: -3722442036602986101
+      spriteID: aa37f092d5ab29d50800000000000000
+      internalID: 6742656501410657194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_1
+      name: CaveGround2_1
       rect:
         serializedVersion: 2
         x: 32
@@ -188,20 +160,22 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 7}
-        - {x: -16, y: 5}
-        - {x: 16, y: 5}
+      - - {x: -15, y: 7}
+        - {x: -15, y: 6}
+        - {x: -15, y: -3}
+        - {x: -11, y: -3}
+        - {x: 16, y: -3}
         - {x: 16, y: 7}
       tessellationDetail: 0
       bones: []
-      spriteID: ccd3717e2920ab5a0800000000000000
-      internalID: -6504883881817719348
+      spriteID: 0f6ac7a743fb17060800000000000000
+      internalID: 6949545932123580144
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_2
+      name: CaveGround2_2
       rect:
         serializedVersion: 2
         x: 64
@@ -212,23 +186,29 @@ TextureImporter:
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 15, y: 7}
+        - {x: -16, y: 7}
+        - {x: -16, y: -3}
+        - {x: 8, y: -3}
+        - {x: 15, y: -3}
+        - {x: 15, y: 2}
       tessellationDetail: 0
       bones: []
-      spriteID: 34b0ffafa138e9230800000000000000
-      internalID: 3647496900120087363
+      spriteID: d900269d5d7a9a300800000000000000
+      internalID: 263926590094835869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_3
+      name: CaveGround2_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 43
-        width: 32
-        height: 14
+        x: 1
+        y: 44
+        width: 30
+        height: 13
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -236,14 +216,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4bd76671cc521dd40800000000000000
-      internalID: 5607304569549127092
+      spriteID: 73bb0ddcdf4718d00800000000000000
+      internalID: 973187627917294391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_4
+      name: CaveGround2_4
       rect:
         serializedVersion: 2
         x: 32
@@ -257,19 +237,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8867d02b4f5b2670800000000000000
-      internalID: 8515004296752228493
+      spriteID: 06c7c2ebd330efd00800000000000000
+      internalID: 1008246930296044640
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_5
+      name: CaveGround2_5
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 32
-        width: 32
+        width: 30
         height: 25
       alignment: 2
       pivot: {x: 0.5, y: 1}
@@ -278,19 +258,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79f715455751a0dc0800000000000000
-      internalID: -3672098952497234025
+      spriteID: 421fa6ef5ad5bd600800000000000000
+      internalID: 494091551646609700
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_6
+      name: CaveGround2_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 30
         height: 25
       alignment: 2
       pivot: {x: 0.5, y: 1}
@@ -299,19 +279,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7fd15c44f182ab9d0800000000000000
-      internalID: -2757847707048141321
+      spriteID: 83aba83a15bacb5c0800000000000000
+      internalID: -4198292385491666376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OverworldGround3_7
+      name: CaveGround2_7
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
-        width: 32
+        width: 28
         height: 25
       alignment: 2
       pivot: {x: 0.5, y: 1}
@@ -320,8 +300,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 23ae6fd1a0c9aa7c0800000000000000
-      internalID: -4059260546854753742
+      spriteID: 68557cdfd77c33430800000000000000
+      internalID: 3761569457727034758
       vertices: []
       indices: 
       edges: []

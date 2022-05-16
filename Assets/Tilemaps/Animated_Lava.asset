@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adda123097fe2d449a173f40124d856f, type: 3}
+  m_Name: Animated_Lava
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 4797728610000489164, guid: 7d4408873a959f84da0eeb8933e1f5de, type: 3}
+  - {fileID: -8992802232881926430, guid: 7d4408873a959f84da0eeb8933e1f5de, type: 3}
+  - {fileID: -2109781825249741064, guid: 7d4408873a959f84da0eeb8933e1f5de, type: 3}
+  - {fileID: -8586545976139211447, guid: 7d4408873a959f84da0eeb8933e1f5de, type: 3}
+  minSpeed: 1
+  maxSpeed: 1

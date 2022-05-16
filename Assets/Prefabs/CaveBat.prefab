@@ -17,11 +17,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.92
+      value: 19.01
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.63
+      value: 3.21
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33,15 +33,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 946633907750920748, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -83,11 +83,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 946633907750920745, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
   m_PrefabInstance: {fileID: 5022071244837235412}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &5229494688837224702 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 946633907750920746, guid: 918d64c34ef2dda4089e5ab0f5ad6424, type: 3}
-  m_PrefabInstance: {fileID: 5022071244837235412}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &7004558256949365040
 Animator:
   serializedVersion: 3
@@ -107,20 +102,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-1189581690723805615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5229494688837224701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef1454449e19f2846b03f67d5eb2a13a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  Speed: 0
-  rigidbody2D: {fileID: 5229494688837224702}
-  Health: 3
-  Damage: 2

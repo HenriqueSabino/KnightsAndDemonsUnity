@@ -26,6 +26,8 @@ public class Player : MonoBehaviour
     private Vector3 movement;
     private bool Invulnarable;
 
+    public float velocity_y;
+
     void Awake()
     {
         if (instance == null)
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        velocity_y = rig.velocity.y;
         if (TakingDamage && rig.velocity.y == 0)
         {
             TakingDamage = false;
@@ -168,9 +171,21 @@ public class Player : MonoBehaviour
             else
             {
                 isAlive = false;
+                Health = 0;
+                GameManager.instance.UpdatePlayerHealth(Health);
                 GroundCollider.enabled = false;
                 rig.velocity = new Vector2(0, 5);
             }
+        }
+
+        if (damage == 100)
+        {
+            sprite.enabled = true;
+            isAlive = false;
+            Health = 0;
+            GameManager.instance.UpdatePlayerHealth(Health);
+            GroundCollider.enabled = false;
+            rig.velocity = new Vector2(0, 5);
         }
     }
 
@@ -196,15 +211,17 @@ public class Player : MonoBehaviour
 
     private IEnumerator Invulnarability()
     {
-        Invulnarable = true;
-        for (float i = 0f; i < 1.5f; i += 0.1f)
-        {
-            sprite.enabled = false;
-            yield return new WaitForSeconds(0.1f);
-            sprite.enabled = true;
-            yield return new WaitForSeconds(0.1f);
-        }
-        Invulnarable = false;
+            Invulnarable = true;
+            for (float i = 0f; i < 1.5f; i += 0.1f)
+            {
+                if(isAlive)
+                    sprite.enabled = false;
+                yield return new WaitForSeconds(0.1f);
+                if(isAlive)
+                    sprite.enabled = true;
+                yield return new WaitForSeconds(0.1f);
+            }
+            Invulnarable = false;
     }
 
     public void ResetAttack()
@@ -226,15 +243,31 @@ public class Player : MonoBehaviour
             }
         }
 
+        if (collision.gameObject.layer == 11 && rig.velocity.y == 0)
+        {
+            foreach (var contact in collision.contacts)
+            {
+                if (contact.normal.normalized == Vector2.up)
+                {
+                    CanJump = true;
+                    anim.SetBool("IsJumping", false);
+                }
+            }
+        }
+
         if (collision.gameObject.layer == LayerMask.NameToLayer("SpikeActive"))
         {
             TakeDamage(5, (transform.position + Vector3.up * 0.5f - collision.transform.position).normalized);
+        }
+        else if (collision.gameObject.layer == LayerMask.NameToLayer("Lava"))
+        {
+            TakeDamage(100, (transform.position + Vector3.up * 0.5f - collision.transform.position).normalized);
         }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 11)
         {
             CanJump = false;
             anim.SetBool("IsJumping", true);
