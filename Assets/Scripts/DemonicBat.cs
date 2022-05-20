@@ -7,8 +7,6 @@ using Random = UnityEngine.Random;
 
 public class DemonicBat : MonoBehaviour
 {
-    public float Speed;
-
     [SerializeField]
     private new Rigidbody2D rigidbody2D;
     private SpriteRenderer sprite;

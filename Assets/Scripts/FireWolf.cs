@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FireWolf : MonoBehaviour
 {
-    public float Speed;
 
     [SerializeField]
     private new Rigidbody2D rigidbody2D;
@@ -125,9 +124,10 @@ public class FireWolf : MonoBehaviour
     // Called by animation
     private void Spit()
     {
-        Fireball fb = Instantiate(Fireball, FireballSpawn.position, Quaternion.Euler(0, 0, 180)).GetComponent<Fireball>();
+        Fireball fb = Instantiate(Fireball, FireballSpawn.position, Quaternion.identity).GetComponent<Fireball>();
 
         fb.damage = Damage;
+        fb.direction = Vector2.left;
 
         ResetAttack();
     }

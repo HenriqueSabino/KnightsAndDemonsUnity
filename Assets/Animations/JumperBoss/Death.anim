@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle
+  m_Name: Death
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,17 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -2510476293373519475, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - time: 0.11666667
-      value: {fileID: 627625725489826318, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - time: 0.23333333
-      value: {fileID: 6338068570567419226, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - time: 0.35
-      value: {fileID: -4309738878335270719, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - time: 0.46666667
-      value: {fileID: -4309738878335270719, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
+      value: {fileID: 1554911355467324750, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - time: 0.1
+      value: {fileID: -2952180121998049559, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - time: 0.2
+      value: {fileID: 554721178384536367, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - time: 0.3
+      value: {fileID: 8552101596358542353, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - time: 0.4
+      value: {fileID: 6731695060810249631, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - time: 0.5
+      value: {fileID: 511382361732229285, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,22 +50,23 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -2510476293373519475, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - {fileID: 627625725489826318, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - {fileID: 6338068570567419226, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - {fileID: -4309738878335270719, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
-    - {fileID: -4309738878335270719, guid: fb2f6c6b372a50544a0992a40422d151, type: 3}
+    - {fileID: 1554911355467324750, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - {fileID: -2952180121998049559, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - {fileID: 554721178384536367, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - {fileID: 8552101596358542353, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - {fileID: 6731695060810249631, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
+    - {fileID: 511382361732229285, guid: 4b2aaee489f358945a6b15dce3716a4c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.48333335
+    m_StopTime: 0.6
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -77,4 +80,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.6
+    functionName: Die
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

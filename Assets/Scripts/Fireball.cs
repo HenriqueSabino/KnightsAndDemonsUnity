@@ -8,18 +8,24 @@ public class Fireball : MonoBehaviour
     private SpriteRenderer sprite;
     public float speed;
     public int damage;
+    public Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        if (direction == Vector2.left)
+        {
+            sprite.flipX = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        rig.velocity = transform.right * speed;
+        rig.velocity = direction * speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
