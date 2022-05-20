@@ -243,9 +243,10 @@ MonoBehaviour:
   TakingDamage: 0
   isAlive: 1
   facingRight: 1
-  GroundCollider: {fileID: 0}
+  GroundCollider: {fileID: 2882934731911396920}
   ArrowSpawn: {fileID: 8346235935100474714}
   ArrowPrefab: {fileID: 8980575494307240622, guid: f7faa57a0b526ab469db45fc2ab9b18f, type: 3}
+  velocity_y: 0
 --- !u!95 &4766309333896125177
 Animator:
   serializedVersion: 3

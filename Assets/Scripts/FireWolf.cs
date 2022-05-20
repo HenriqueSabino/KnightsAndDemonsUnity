@@ -125,8 +125,9 @@ public class FireWolf : MonoBehaviour
     // Called by animation
     private void Spit()
     {
-        Instantiate(Fireball, FireballSpawn.position, Quaternion.Euler(0, 0, 180));
+        Fireball fb = Instantiate(Fireball, FireballSpawn.position, Quaternion.Euler(0, 0, 180)).GetComponent<Fireball>();
 
+        fb.damage = Damage;
 
         ResetAttack();
     }

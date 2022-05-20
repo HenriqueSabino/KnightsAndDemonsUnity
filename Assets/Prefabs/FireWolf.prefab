@@ -169,7 +169,7 @@ MonoBehaviour:
   Speed: 0
   rigidbody2D: {fileID: 807541297876967212}
   Health: 50
-  Damage: 2
+  Damage: 20
   dashSpeed: 8
   GroundCollider: {fileID: 807541298929346714}
   Fireball: {fileID: 4731973909267265904, guid: 4b83ae2448926b54c9f0375e7e27012c, type: 3}
