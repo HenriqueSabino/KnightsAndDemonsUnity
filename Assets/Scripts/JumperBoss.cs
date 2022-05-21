@@ -15,6 +15,7 @@ public class JumperBoss : MonoBehaviour
     private Animator anim;
     private bool IsAlive = true;
     public int Health = 50;
+    private int MaxHealth;
     public int Damage = 12;
     public float stompSpeed = 8;
     public Transform FireballSpawn;
@@ -26,6 +27,7 @@ public class JumperBoss : MonoBehaviour
     private float KnockPow = 5;
 
     private State CurrentState = 0;
+    private List<GameObject> spawnedEnemies;
 
     [SerializeField]
     private float TimeBetweenAttacks;
@@ -48,6 +50,8 @@ public class JumperBoss : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         LastAttackTime = Time.timeSinceLevelLoad;
+        MaxHealth = Health;
+        spawnedEnemies = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -83,6 +87,14 @@ public class JumperBoss : MonoBehaviour
                     StompDown();
                     break;
             }
+
+            if (spawnedEnemies.Count == 0 && Health <= MaxHealth / 2)
+            {
+                spawnedEnemies.Add(Instantiate(Ghost, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                spawnedEnemies.Add(Instantiate(Ghost, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                spawnedEnemies.Add(Instantiate(CaveBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                spawnedEnemies.Add(Instantiate(CaveBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+            }
         }
     }
 
@@ -102,16 +114,12 @@ public class JumperBoss : MonoBehaviour
     {
         if (!TakingDamage)
         {
-            int move = Random.Range(0, 3);
+            int max = Health > MaxHealth / 2 ? 1 : 2;
+            int move = Random.Range(0, max);
 
             switch (move)
             {
                 case 0:
-                    CurrentState = State.READY_STOMP;
-                    anim.SetTrigger("Stomp");
-                    Invulnarable = true;
-                    break;
-                case 1:
                     CurrentState = State.FIREBALLS;
 
                     rigidbody2D.velocity = Vector2.zero;
@@ -119,8 +127,10 @@ public class JumperBoss : MonoBehaviour
                     anim.SetTrigger("Fireball");
                     Invulnarable = true;
                     break;
-                case 2:
-
+                case 1:
+                    CurrentState = State.READY_STOMP;
+                    anim.SetTrigger("Stomp");
+                    Invulnarable = true;
                     break;
             }
         }
@@ -220,6 +230,11 @@ public class JumperBoss : MonoBehaviour
                 rigidbody2D.gravityScale = 0;
                 CurrentState = State.DYING;
                 anim.SetTrigger("Die");
+
+                foreach (var enemy in spawnedEnemies)
+                {
+                    Destroy(enemy);
+                }
             }
 
             if (other.CompareTag("Arrow"))
