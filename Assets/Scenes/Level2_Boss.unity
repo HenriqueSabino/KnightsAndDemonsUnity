@@ -281,6 +281,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1832889325}
     - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
+      propertyPath: Points
+      value: 
+      objectReference: {fileID: 1832889327}
+    - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
+      propertyPath: WingsBar
+      value: 
+      objectReference: {fileID: 1832889328}
+    - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 1832889326}
@@ -1671,6 +1679,22 @@ MonoBehaviour:
 --- !u!224 &1832889326 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3757764973762148166, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
+  m_PrefabInstance: {fileID: 1832889322}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1832889327 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8876062210209786526, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
+  m_PrefabInstance: {fileID: 1832889322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1832889328 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7608125863525849137, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
   m_PrefabInstance: {fileID: 1832889322}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4485498977553531305

@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     public int PlayerLives;
 
     public RectTransform HealthBar;
+    public RectTransform WingsBar;
     public TMP_Text Health;
     public TMP_Text Lives;
     public TMP_Text Arrows;
+    public TMP_Text Points;
     public bool BossLevel;
     public GameObject Boss;
     public string NextSceneName;
@@ -48,6 +50,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Lives", Player.instance.Lives);
         PlayerPrefs.SetInt("Health", Player.instance.Health);
         PlayerPrefs.SetInt("Arrows", Player.instance.Arrows);
+        PlayerPrefs.SetInt("Points", Player.instance.Points);
 
         SceneManager.LoadScene(NextSceneName);
     }
@@ -66,8 +69,20 @@ public class GameManager : MonoBehaviour
         Arrows.text = $"x {arrows.ToString("D2")}";
     }
 
+    public void UpdatePlayerPoints(int points)
+    {
+        Points.text = $"Points: {points.ToString("D3")}";
+    }
+
     public void UpdatePlayerLives(int lives)
     {
         Lives.text = $"x {lives.ToString("D2")}";
+    }
+
+    public void UpdateWingsCooldown(float cooldown)
+    {
+        Vector2 anchorMax = WingsBar.anchorMax;
+        anchorMax.x = cooldown;
+        WingsBar.anchorMax = anchorMax;
     }
 }

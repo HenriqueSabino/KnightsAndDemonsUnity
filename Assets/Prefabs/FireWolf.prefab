@@ -166,13 +166,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f4f513ad463496409c226df8d6a2afd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 0
   rigidbody2D: {fileID: 807541297876967212}
   Health: 50
   Damage: 20
   dashSpeed: 8
   GroundCollider: {fileID: 807541298929346714}
   Fireball: {fileID: 4731973909267265904, guid: 4b83ae2448926b54c9f0375e7e27012c, type: 3}
+  Wings: {fileID: 6735987454917425954, guid: b1a506809141d464ab1d42a9de52e4d0, type: 3}
   IdlePos: {fileID: 0}
   ArenaEnd: {fileID: 0}
   FireballSpawn: {fileID: 1520141012731429517}

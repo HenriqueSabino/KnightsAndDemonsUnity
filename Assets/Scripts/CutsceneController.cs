@@ -32,6 +32,10 @@ public class CutsceneController : MonoBehaviour
             PlayerPrefs.DeleteKey("Lives");
             PlayerPrefs.DeleteKey("Health");
             PlayerPrefs.DeleteKey("Arrows");
+            PlayerPrefs.DeleteKey("Points");
+            PlayerPrefs.DeleteKey("Wings");
+            PlayerPrefs.SetInt("Key", ((int)KeyStatus.NO_KEY));
+
             SceneManager.LoadScene("Level1_1");
         }
     }

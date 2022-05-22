@@ -6460,6 +6460,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
+--- !u!114 &3757764973942991913 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8876062210209786526, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
+  m_PrefabInstance: {fileID: 3757764973942991912}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &3757764973942991914 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7608125863525849137, guid: cb44c53751f07b34ab458d5b10a72627, type: 3}
+  m_PrefabInstance: {fileID: 3757764973942991912}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4229352252619072015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6713,6 +6729,14 @@ PrefabInstance:
       propertyPath: Health
       value: 
       objectReference: {fileID: 2056318089}
+    - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
+      propertyPath: Points
+      value: 
+      objectReference: {fileID: 3757764973942991913}
+    - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
+      propertyPath: WingsBar
+      value: 
+      objectReference: {fileID: 3757764973942991914}
     - target: {fileID: 6173135204146882337, guid: 2f0821ebb251712499f07de5d5199bab, type: 3}
       propertyPath: HealthBar
       value: 

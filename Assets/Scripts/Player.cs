@@ -14,8 +14,10 @@ public class Player : MonoBehaviour
     public bool isAlive = true;
     public bool facingRight = true;
     public int Health { get; private set; } = 100;
+    public int Points { get; private set; } = 0;
     public int Arrows { get; private set; } = 10;
     public int Lives { get; private set; } = 3;
+    public float WingsCD { get; private set; } = 0;
     public Collider2D GroundCollider;
     public Transform ArrowSpawn;
     public GameObject ArrowPrefab;
@@ -25,6 +27,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer sprite;
     private Vector3 movement;
     private bool Invulnarable;
+    private bool HasWings;
+    private bool CanUseWings;
 
 
     void Awake()
@@ -49,11 +53,22 @@ public class Player : MonoBehaviour
             Arrows = PlayerPrefs.GetInt("Arrows");
             PlayerPrefs.DeleteKey("Arrows");
         }
+
+        if (PlayerPrefs.HasKey("Points"))
+        {
+            Points = PlayerPrefs.GetInt("Points");
+            PlayerPrefs.DeleteKey("Points");
+        }
+
+        HasWings = PlayerPrefs.HasKey("Wings");
+        CanUseWings = HasWings;
+        WingsCD = HasWings ? 1 : 0;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.UpdateWingsCooldown(WingsCD);
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
@@ -72,6 +87,10 @@ public class Player : MonoBehaviour
             if (!TakingDamage)
             {
                 Move();
+            }
+
+            if (!TakingDamage || CanUseWings)
+            {
                 Jump();
             }
 
@@ -99,7 +118,10 @@ public class Player : MonoBehaviour
 
         anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
 
-        sprite.flipX = movement.x != 0 ? movement.x < 0 : sprite.flipX;
+        if (movement.x != 0)
+        {
+            transform.rotation = movement.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
+        }
 
         if (movement.x > 0)
         {
@@ -115,8 +137,18 @@ public class Player : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
-            if (CanJump)
+            if (CanJump || CanUseWings)
             {
+
+                if (!CanJump)
+                {
+                    WingsCD = 0;
+                    GameManager.instance.UpdateWingsCooldown(WingsCD);
+                    StartCoroutine(WingsCooldown());
+                    TakingDamage = false;
+                    rig.velocity = Vector2.zero;
+                }
+
                 Vector2 v = rig.velocity;
                 v.y += JumpForce;
                 rig.velocity = v;
@@ -205,6 +237,32 @@ public class Player : MonoBehaviour
             Arrows = 20;
 
         GameManager.instance.UpdatePlayerArrows(Arrows);
+    }
+
+    public void AddPoints(int amount)
+    {
+        Points += amount;
+
+        Lives += Points / 100;
+
+        Points = Points % 100;
+
+        GameManager.instance.UpdatePlayerPoints(Points);
+        GameManager.instance.UpdatePlayerLives(Lives);
+    }
+
+    private IEnumerator WingsCooldown()
+    {
+        CanUseWings = false;
+
+        while (WingsCD < 1)
+        {
+            yield return new WaitForSeconds(1f);
+            WingsCD += 0.1f;
+            GameManager.instance.UpdateWingsCooldown(WingsCD);
+        }
+
+        CanUseWings = true;
     }
 
     private IEnumerator Invulnarability()

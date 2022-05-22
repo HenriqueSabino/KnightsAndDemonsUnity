@@ -195,6 +195,9 @@ public class DemonicBat : MonoBehaviour
             {
                 IsAlive = false;
                 rigidbody2D.velocity = new Vector2(0, 5);
+
+                Player.instance.AddPoints(30);
+
                 if (transform.position.y < -20)
                 {
                     Destroy(gameObject);

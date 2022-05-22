@@ -15,6 +15,7 @@ public class FireWolf : MonoBehaviour
     public float dashSpeed = 8;
     public Collider2D GroundCollider;
     public GameObject Fireball;
+    public GameObject Wings;
     public Transform IdlePos;
     public Transform ArenaEnd;
     public Transform FireballSpawn;
@@ -161,6 +162,11 @@ public class FireWolf : MonoBehaviour
                 IsAlive = false;
                 GroundCollider.enabled = false;
                 rigidbody2D.velocity = new Vector2(0, 5);
+
+                Player.instance.AddPoints(30);
+
+                Instantiate(Wings, transform.position + Vector3.up * 2, Quaternion.identity);
+
                 if (transform.position.y < -20)
                 {
                     Destroy(gameObject);

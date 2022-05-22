@@ -123,6 +123,9 @@ public class FlyingEnemy : MonoBehaviour
                 IsAlive = false;
                 rigidbody2D.velocity = new Vector2(0, 5);
                 rigidbody2D.gravityScale = 1;
+
+                Player.instance.AddPoints(10);
+
                 if (transform.position.y < -20)
                 {
                     Destroy(gameObject);
