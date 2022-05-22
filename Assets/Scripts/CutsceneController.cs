@@ -38,7 +38,6 @@ public class CutsceneController : MonoBehaviour
 
     public void NextScene()
     {
-        print("teste");
         Scene++;
     }
 }
