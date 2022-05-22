@@ -20,7 +20,7 @@ public class JumperBoss : MonoBehaviour
     public float stompSpeed = 8;
     public Transform FireballSpawn;
     public GameObject Fireball;
-    public GameObject CaveBat;
+    public GameObject DemonBat;
     public GameObject Ghost;
     public bool TakingDamage;
     public bool Invulnarable;
@@ -92,8 +92,8 @@ public class JumperBoss : MonoBehaviour
             {
                 spawnedEnemies.Add(Instantiate(Ghost, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
                 spawnedEnemies.Add(Instantiate(Ghost, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
-                spawnedEnemies.Add(Instantiate(CaveBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
-                spawnedEnemies.Add(Instantiate(CaveBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                spawnedEnemies.Add(Instantiate(DemonBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
+                spawnedEnemies.Add(Instantiate(DemonBat, transform.position + (Vector3)Random.insideUnitCircle, Quaternion.identity));
             }
         }
     }

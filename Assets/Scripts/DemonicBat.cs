@@ -110,7 +110,6 @@ public class DemonicBat : MonoBehaviour
 
     private void ResetAttack()
     {
-        print("Reset");
         LastAttackTime = Time.timeSinceLevelLoad;
         CurrentState = State.IDLE;
     }

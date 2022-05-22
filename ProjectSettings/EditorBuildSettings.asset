@@ -18,6 +18,36 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1_2.unity
     guid: ba1a031b5f9a08745ae245381c8e86b8
   - enabled: 1
+    path: Assets/Scenes/Level1_3.unity
+    guid: 51465f53a32482243ae7252c07db1d73
+  - enabled: 1
+    path: Assets/Scenes/Level1_Boss.unity
+    guid: e930193d6ae406046b501da6508d6495
+  - enabled: 1
+    path: Assets/Scenes/Level2_1.unity
+    guid: 2c607dbb2463eab4b922e31e4eaa4c51
+  - enabled: 1
+    path: Assets/Scenes/Level2_2.unity
+    guid: 601c9c34908e9ba4c89d9837297ef8f1
+  - enabled: 1
+    path: Assets/Scenes/Level2_3.unity
+    guid: fb06a0350343dd14b8a163f3876863c3
+  - enabled: 1
+    path: Assets/Scenes/Level2_Boss.unity
+    guid: 5d98e712c401cbc498a61448b62a4ab0
+  - enabled: 1
+    path: Assets/Scenes/Level3_1.unity
+    guid: 9036f8943c1c9ad4c8fff73e340dfb22
+  - enabled: 1
+    path: Assets/Scenes/Level3_2.unity
+    guid: f62ade6d81b15904e9bd8435e5602e06
+  - enabled: 1
+    path: Assets/Scenes/Level3_3.unity
+    guid: 812c0d4f0c1841948b6c5fbce568f482
+  - enabled: 1
+    path: Assets/Scenes/Level3_Boss.unity
+    guid: f14c29108391b914eb2b1967e3324ba2
+  - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: 957ab4bc0a28e78458163774d531f3f0
   m_configObjects: {}

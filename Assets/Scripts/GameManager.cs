@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text Health;
     public TMP_Text Lives;
     public TMP_Text Arrows;
+    public bool BossLevel;
+    public GameObject Boss;
     public string NextSceneName;
 
     void Awake()

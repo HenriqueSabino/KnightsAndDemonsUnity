@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     private Vector3 movement;
     private bool Invulnarable;
 
-    public float velocity_y;
 
     void Awake()
     {
@@ -63,7 +62,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        velocity_y = rig.velocity.y;
         if (TakingDamage && rig.velocity.y == 0)
         {
             TakingDamage = false;
@@ -211,17 +209,17 @@ public class Player : MonoBehaviour
 
     private IEnumerator Invulnarability()
     {
-            Invulnarable = true;
-            for (float i = 0f; i < 1.5f; i += 0.1f)
-            {
-                if(isAlive)
-                    sprite.enabled = false;
-                yield return new WaitForSeconds(0.1f);
-                if(isAlive)
-                    sprite.enabled = true;
-                yield return new WaitForSeconds(0.1f);
-            }
-            Invulnarable = false;
+        Invulnarable = true;
+        for (float i = 0f; i < 1.5f; i += 0.1f)
+        {
+            if (isAlive)
+                sprite.enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            if (isAlive)
+                sprite.enabled = true;
+            yield return new WaitForSeconds(0.1f);
+        }
+        Invulnarable = false;
     }
 
     public void ResetAttack()

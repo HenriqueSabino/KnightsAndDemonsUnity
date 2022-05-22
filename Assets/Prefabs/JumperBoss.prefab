@@ -173,7 +173,7 @@ MonoBehaviour:
   stompSpeed: 16
   FireballSpawn: {fileID: 5146297968199700745}
   Fireball: {fileID: 523433721242003299, guid: 0562517969e6eca4197df4ed018072aa, type: 3}
-  CaveBat: {fileID: 5229494688837224701, guid: a4b5ac5fb780ff148ba6e78ae20666f7, type: 3}
+  CaveBat: {fileID: 6500355717965569671, guid: 15262a3a89b9c8b429a7d271ca660dc8, type: 3}
   Ghost: {fileID: 6917216226142265723, guid: 90cf739588e413c479fb1e9091e2a4f0, type: 3}
   TakingDamage: 0
   Invulnarable: 0
