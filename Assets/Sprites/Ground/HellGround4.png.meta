@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: cc989de0d5f336644b3c626edb20e3ed
+guid: cdbe71c24bd375a4ea84c7d961489400
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4747429177556206589
-    second: HellGround2_0
+      213: -5184881842974785798
+    second: HellGround4_0
   - first:
-      213: 8984896373001144068
-    second: HellGround2_1
+      213: -4927577993756161855
+    second: HellGround4_1
   - first:
-      213: 7711881207081520393
-    second: HellGround2_2
+      213: 2791824957083406316
+    second: HellGround4_2
   - first:
-      213: 5331244186305853090
-    second: HellGround2_3
+      213: -2374306380293513095
+    second: HellGround4_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -115,96 +115,104 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: HellGround2_0
+      name: HellGround4_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 32
+        y: 43
         width: 32
-        height: 25
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: 6}
+        - {x: -16, y: 2}
+        - {x: 16, y: 2}
+        - {x: 16, y: 6}
       tessellationDetail: 0
       bones: []
-      spriteID: 30cff63e05ebd1eb0800000000000000
-      internalID: -4747429177556206589
+      spriteID: afe7d1b3f699b08b0800000000000000
+      internalID: -5184881842974785798
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HellGround2_1
+      name: HellGround4_1
       rect:
         serializedVersion: 2
         x: 32
-        y: 32
+        y: 43
         width: 32
-        height: 25
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -13, y: 12.5}
-        - {x: -13, y: -6.5}
-        - {x: -13, y: -12.5}
-        - {x: 16, y: -12.5}
-        - {x: 16, y: 12.5}
+      - - {x: -13, y: 6}
+        - {x: -13, y: 2}
+        - {x: 16, y: 2}
+        - {x: 16, y: 6}
       tessellationDetail: 0
       bones: []
-      spriteID: 407cd60b5a3c0bc70800000000000000
-      internalID: 8984896373001144068
+      spriteID: 1c8c12f0ce9bd9bb0800000000000000
+      internalID: -4927577993756161855
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HellGround2_2
+      name: HellGround4_2
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 11
         width: 32
-        height: 25
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 12.5}
-        - {x: -16, y: -12.5}
-        - {x: 13, y: -12.5}
-        - {x: 13, y: -7.5}
-        - {x: 13, y: 0.5}
-        - {x: 13, y: 12.5}
+      - - {x: -16, y: 6}
+        - {x: -16, y: 2}
+        - {x: 13, y: 2}
+        - {x: 13, y: 4}
+        - {x: 13, y: 6}
       tessellationDetail: 0
       bones: []
-      spriteID: 90dca1a391b160b60800000000000000
-      internalID: 7711881207081520393
+      spriteID: cefc60ab10e8eb620800000000000000
+      internalID: 2791824957083406316
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: HellGround2_3
+      name: HellGround4_3
       rect:
         serializedVersion: 2
         x: 35
-        y: 0
+        y: 12
         width: 26
-        height: 25
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -13, y: 5}
+        - {x: -13, y: 1}
+        - {x: 1, y: 1}
+        - {x: 13, y: 1}
+        - {x: 13, y: 5}
+        - {x: 2, y: 5}
       tessellationDetail: 0
       bones: []
-      spriteID: 2a670af57526cf940800000000000000
-      internalID: 5331244186305853090
+      spriteID: 97069ae3de4cc0fd0800000000000000
+      internalID: -2374306380293513095
       vertices: []
       indices: 
       edges: []
