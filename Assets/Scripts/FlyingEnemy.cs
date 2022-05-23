@@ -14,6 +14,7 @@ public class FlyingEnemy : MonoBehaviour
     private Animator anim;
     private bool TakingDamage;
     private bool Attacking;
+    private bool DecidedTarget;
     private bool IsAlive = true;
     public int Health = 3;
     public int Damage = 2;
@@ -51,12 +52,14 @@ public class FlyingEnemy : MonoBehaviour
             if (dist <= 0.1f)
             {
                 Attacking = false;
+                DecidedTarget = false;
                 rigidbody2D.velocity = Vector2.zero;
             }
             else if (dist >= 2.5f)
             {
                 TargetOffset.x *= -1;
                 Attacking = false;
+                DecidedTarget = false;
                 rigidbody2D.velocity = Vector2.zero;
             }
         }
@@ -70,6 +73,12 @@ public class FlyingEnemy : MonoBehaviour
                 rigidbody2D.velocity = Vector2.zero;
                 rigidbody2D.AddForce((Target.position - transform.position + Vector3.up * 0.5f).normalized * 6, ForceMode2D.Impulse);
                 Attacking = true;
+            }
+
+            if (!DecidedTarget)
+            {
+                TargetOffset = sprite.flipX ? new Vector3(2, 0.5f) : new Vector3(-2, 0.5f);
+                DecidedTarget = true;
             }
 
             if (!Attacking)

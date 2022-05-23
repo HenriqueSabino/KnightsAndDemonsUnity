@@ -156,7 +156,7 @@ public class DemonicBat : MonoBehaviour
 
     private void Reposition()
     {
-        if (Vector3.Distance(transform.position, IdlePos.position) >= 0.1f)
+        if (Vector3.Distance(transform.position, IdlePos.position) >= 0.2f)
         {
             rigidbody2D.velocity = Vector2.down * repositionSpeed;
         }

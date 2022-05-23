@@ -13,6 +13,7 @@ public class Fox : MonoBehaviour
     private Animator anim;
     private Vector3 TargetOffset;
     private bool TakingDamage;
+    private bool DecidedTarget;
     private bool IsAlive = true;
     public int Health = 3;
     public int Damage = 2;
@@ -38,6 +39,12 @@ public class Fox : MonoBehaviour
 
         if (sprite.isVisible && !TakingDamage && IsAlive)
         {
+            if (!DecidedTarget)
+            {
+                TargetOffset = Target.position.x - transform.position.x > 0 ? new Vector3(2, 0.5f) : new Vector3(-2, 0.5f);
+                DecidedTarget = true;
+            }
+
             float dist = Target.position.x + TargetOffset.x - transform.position.x;
 
             if (!TakingDamage && Mathf.Abs(dist) <= 0.3f)

@@ -31,32 +31,32 @@ public class Ghost : MonoBehaviour
         {
             if (rigidbody2D.position.x > Target.position.x)
             {
-                if(Player.instance.facingRight == false) 
+                if (Player.instance.facingRight == false)
                 {
                     rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed;
                     anim.SetBool("IsMoving", true);
-                    sprite.color = new Color(1f,1f,1f,1f);
+                    sprite.color = new Color(1f, 1f, 1f, 1f);
                 }
-                else 
+                else
                 {
                     rigidbody2D.velocity = Vector2.zero;
                     anim.SetBool("IsMoving", false);
-                    sprite.color = new Color(1f,1f,1f,.2f);
+                    sprite.color = new Color(1f, 1f, 1f, .2f);
                 }
             }
             else
             {
-                if(Player.instance.facingRight == true) 
+                if (Player.instance.facingRight == true)
                 {
                     rigidbody2D.velocity = (Target.position - transform.position).normalized * Speed;
                     anim.SetBool("IsMoving", true);
-                    sprite.color = new Color(1f,1f,1f,1f);
+                    sprite.color = new Color(1f, 1f, 1f, 1f);
                 }
-                else 
+                else
                 {
                     rigidbody2D.velocity = Vector2.zero;
                     anim.SetBool("IsMoving", false);
-                    sprite.color = new Color(1f,1f,1f,.2f);
+                    sprite.color = new Color(1f, 1f, 1f, .2f);
                 }
             }
 
@@ -65,7 +65,7 @@ public class Ghost : MonoBehaviour
     }
 
     // Update is called once per frame
-     private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
