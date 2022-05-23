@@ -365,7 +365,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1548116052}
         m_TargetAssemblyTypeName: CutsceneController, Assembly-CSharp
-        m_MethodName: NextScene
+        m_MethodName: NextImage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -517,9 +517,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e9730b65e230b46b94066349c5a31c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Scene: 0
-  Scene1: {fileID: 322480061}
-  Scene2: {fileID: 566097397}
+  currentImage: 0
+  images:
+  - {fileID: 322480061}
+  - {fileID: 566097397}
+  next: {fileID: 371340730}
+  NextScene: Level1_1
+  showOnAwake: 1
 --- !u!4 &1548116053
 Transform:
   m_ObjectHideFlags: 0
@@ -670,7 +674,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 134274245}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1

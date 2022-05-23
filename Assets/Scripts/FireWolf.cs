@@ -37,6 +37,14 @@ public class FireWolf : MonoBehaviour
         SPITTING,
     }
 
+    void Awake()
+    {
+        if (PlayerPrefs.HasKey("DefeatedFireWolf"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,6 +85,13 @@ public class FireWolf : MonoBehaviour
                     anim.SetTrigger("Spit");
                     CurrentState = State.SPITTING;
                     break;
+            }
+        }
+        else
+        {
+            if (transform.position.y < -10)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -166,11 +181,7 @@ public class FireWolf : MonoBehaviour
                 Player.instance.AddPoints(30);
 
                 Instantiate(Wings, transform.position + Vector3.up * 2, Quaternion.identity);
-
-                if (transform.position.y < -20)
-                {
-                    Destroy(gameObject);
-                }
+                PlayerPrefs.SetInt("DefeatedFireWolf", 1);
             }
 
             if (other.CompareTag("Arrow"))

@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelEndScript : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    public bool CheckKey;
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.NextLevel();
+            GameManager.instance.NextLevel(CheckKey);
         }
     }
 }

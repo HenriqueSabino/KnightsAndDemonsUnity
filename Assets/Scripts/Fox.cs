@@ -55,6 +55,11 @@ public class Fox : MonoBehaviour
         if (!IsAlive)
         {
             anim.SetBool("IsDeath", true);
+
+            if (transform.position.y < -10)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -91,11 +96,6 @@ public class Fox : MonoBehaviour
                 rigidbody2D.velocity = new Vector2(0, 5);
 
                 Player.instance.AddPoints(10);
-
-                if (transform.position.y < -20)
-                {
-                    Destroy(gameObject);
-                }
             }
 
             if (other.CompareTag("Arrow"))

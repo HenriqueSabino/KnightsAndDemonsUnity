@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
             anim.SetBool("IsJumping", true);
         }
 
-        if (transform.position.y < -20)
+        if (transform.position.y < -10)
         {
             GameManager.instance.PlayerDeath(Lives);
         }

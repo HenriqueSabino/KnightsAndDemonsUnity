@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text Points;
     public bool BossLevel;
     public GameObject Boss;
+    public List<UnityEvent> BossDied;
+    public UnityEvent NeedKey;
     public string NextSceneName;
 
     void Awake()
@@ -32,6 +35,9 @@ public class GameManager : MonoBehaviour
         UpdatePlayerHealth(Player.instance.Health);
         UpdatePlayerArrows(Player.instance.Arrows);
         UpdatePlayerLives(Player.instance.Lives);
+
+        if (BossLevel)
+            StartCoroutine(WaitBossDeath());
     }
 
     public void PlayerDeath(int Lives)
@@ -45,8 +51,17 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("Game Over");
     }
 
-    public void NextLevel()
+    public void NextLevel(bool checkKey = false)
     {
+        if (checkKey && PlayerPrefs.GetInt("Key") != ((int)KeyStatus.GOT_KEY))
+        {
+            PlayerPrefs.SetInt("Key", ((int)KeyStatus.USED_KEY));
+
+            NeedKey.Invoke();
+
+            return;
+        }
+
         PlayerPrefs.SetInt("Lives", Player.instance.Lives);
         PlayerPrefs.SetInt("Health", Player.instance.Health);
         PlayerPrefs.SetInt("Arrows", Player.instance.Arrows);
@@ -84,5 +99,28 @@ public class GameManager : MonoBehaviour
         Vector2 anchorMax = WingsBar.anchorMax;
         anchorMax.x = cooldown;
         WingsBar.anchorMax = anchorMax;
+    }
+
+    private IEnumerator WaitBossDeath()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (Boss != null)
+        {
+            yield return new WaitUntil(() => Boss == null);
+
+
+            foreach (var action in BossDied)
+            {
+                action.Invoke();
+            }
+        }
+
+        GameObject blockage = GameObject.Find("Level/Blockage");
+
+        if (blockage != null)
+        {
+            Destroy(blockage);
+        }
     }
 }

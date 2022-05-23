@@ -82,6 +82,11 @@ public class FlyingEnemy : MonoBehaviour
         if (!IsAlive)
         {
             anim.SetBool("IsDeath", true);
+
+            if (transform.position.y < -10)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -125,11 +130,6 @@ public class FlyingEnemy : MonoBehaviour
                 rigidbody2D.gravityScale = 1;
 
                 Player.instance.AddPoints(10);
-
-                if (transform.position.y < -20)
-                {
-                    Destroy(gameObject);
-                }
             }
 
             if (other.CompareTag("Arrow"))

@@ -6,42 +6,73 @@ using UnityEngine.SceneManagement;
 
 public class CutsceneController : MonoBehaviour
 {
-    public int Scene;
-    public Image Scene1;
-    public Image Scene2;
+    public int currentImage;
+    public List<Image> images;
+    public Button next;
+    public string NextScene;
+    public bool showOnAwake;
+    public string saveOnPlayerPrefs;
 
-    void Update()
+    void Awake()
     {
-        Scenes1();
+        foreach (var image in images)
+        {
+            image.enabled = false;
+        }
+        next.gameObject.SetActive(false);
+
+        if (showOnAwake && saveOnPlayerPrefs != "" && !PlayerPrefs.HasKey(saveOnPlayerPrefs))
+        {
+            ShowCutscene();
+        }
     }
+
+    public void ShowCutscene()
+    {
+        currentImage = 0;
+        Time.timeScale = 0;
+        images[currentImage].enabled = true;
+        next.gameObject.SetActive(true);
+    }
+
+    public void NextImage()
+    {
+        currentImage++;
+        ChangeImage();
+    }
+
     // Start is called before the first frame update
-    public void Scenes1()
+    public void ChangeImage()
     {
-        if (Scene == 0)
+        if (currentImage < images.Count)
         {
-            Scene1.enabled = true;
-            Scene2.enabled = false;
+            images[currentImage - 1].enabled = false;
+            images[currentImage].enabled = true;
         }
-        if (Scene == 1)
+        else
         {
-            Scene1.enabled = false;
-            Scene2.enabled = true;
-        }
-        else if (Scene == 2)
-        {
-            PlayerPrefs.DeleteKey("Lives");
-            PlayerPrefs.DeleteKey("Health");
-            PlayerPrefs.DeleteKey("Arrows");
-            PlayerPrefs.DeleteKey("Points");
-            PlayerPrefs.DeleteKey("Wings");
-            PlayerPrefs.SetInt("Key", ((int)KeyStatus.NO_KEY));
+            if (NextScene == "Level1_1")
+            {
+                PlayerPrefs.DeleteAll();
+                PlayerPrefs.SetInt("Key", ((int)KeyStatus.NO_KEY));
+            }
 
-            SceneManager.LoadScene("Level1_1");
-        }
-    }
+            if (saveOnPlayerPrefs != "")
+            {
+                PlayerPrefs.SetInt(saveOnPlayerPrefs, 1);
+            }
 
-    public void NextScene()
-    {
-        Scene++;
+            Time.timeScale = 1;
+            if (NextScene != "")
+                SceneManager.LoadScene(NextScene);
+            else
+            {
+                foreach (var image in images)
+                {
+                    image.enabled = false;
+                }
+                next.gameObject.SetActive(false);
+            }
+        }
     }
 }

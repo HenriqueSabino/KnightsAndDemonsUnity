@@ -37,6 +37,14 @@ public class DemonicBat : MonoBehaviour
         FIREBALLS,
     }
 
+    void Awake()
+    {
+        if (PlayerPrefs.HasKey("DefeatedDemonicBat"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +75,13 @@ public class DemonicBat : MonoBehaviour
                 case State.REPOSITIONING:
                     Reposition();
                     break;
+            }
+        }
+        else
+        {
+            if (transform.position.y < -10)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -196,12 +211,9 @@ public class DemonicBat : MonoBehaviour
                 IsAlive = false;
                 rigidbody2D.velocity = new Vector2(0, 5);
 
-                Player.instance.AddPoints(30);
+                PlayerPrefs.SetInt("DefeatedDemonicBat", 1);
 
-                if (transform.position.y < -20)
-                {
-                    Destroy(gameObject);
-                }
+                Player.instance.AddPoints(30);
             }
 
             if (other.CompareTag("Arrow"))
