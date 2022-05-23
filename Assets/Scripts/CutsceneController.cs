@@ -21,7 +21,7 @@ public class CutsceneController : MonoBehaviour
         }
         next.gameObject.SetActive(false);
 
-        if (showOnAwake && (saveOnPlayerPrefs == "") || (saveOnPlayerPrefs != "" && !PlayerPrefs.HasKey(saveOnPlayerPrefs)))
+        if (showOnAwake && ((saveOnPlayerPrefs == "") || (saveOnPlayerPrefs != "" && !PlayerPrefs.HasKey(saveOnPlayerPrefs))))
         {
             ShowCutscene();
         }

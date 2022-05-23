@@ -3172,7 +3172,7 @@ MonoBehaviour:
   - {fileID: 1975074188}
   - {fileID: 1916601847}
   next: {fileID: 307781874}
-  NextScene: 
+  NextScene: Menu
   showOnAwake: 0
   saveOnPlayerPrefs: BeforeDevilCutscene
 --- !u!1 &1975074186
