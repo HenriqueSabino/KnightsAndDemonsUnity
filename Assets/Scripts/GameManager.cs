@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public List<UnityEvent> BossDied;
     public UnityEvent NeedKey;
     public string NextSceneName;
+    public string PreviousSceneName;
 
     void Awake()
     {
@@ -68,6 +69,26 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Points", Player.instance.Points);
 
         SceneManager.LoadScene(NextSceneName);
+    }
+
+    public void PreviousLevel(bool checkKey = false)
+    {
+        if (checkKey && PlayerPrefs.GetInt("Key") != ((int)KeyStatus.GOT_KEY))
+        {
+            PlayerPrefs.SetInt("Key", ((int)KeyStatus.USED_KEY));
+
+            NeedKey.Invoke();
+
+            return;
+        }
+
+        PlayerPrefs.SetInt("Lives", Player.instance.Lives);
+        PlayerPrefs.SetInt("Health", Player.instance.Health);
+        PlayerPrefs.SetInt("Arrows", Player.instance.Arrows);
+        PlayerPrefs.SetInt("Points", Player.instance.Points);
+        PlayerPrefs.SetInt("Back", 1);
+
+        SceneManager.LoadScene(PreviousSceneName);
     }
 
     public void UpdatePlayerHealth(int health)

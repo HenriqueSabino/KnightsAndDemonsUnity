@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private bool Invulnarable;
     private bool HasWings;
     private bool CanUseWings;
+    private bool WasBack;
 
 
     void Awake()
@@ -63,6 +64,16 @@ public class Player : MonoBehaviour
         HasWings = PlayerPrefs.HasKey("Wings");
         CanUseWings = HasWings;
         WingsCD = HasWings ? 1 : 0;
+
+        if (PlayerPrefs.HasKey("Back"))
+        {
+            GameObject backSpawn = GameObject.Find("BackSpawn");
+            transform.position = backSpawn.transform.position;
+            PlayerPrefs.DeleteKey("Back");
+            WasBack = true;
+
+            facingRight = false;
+        }
     }
 
     // Start is called before the first frame update
@@ -103,6 +114,10 @@ public class Player : MonoBehaviour
 
         if (transform.position.y < -10)
         {
+            if (WasBack)
+            {
+                PlayerPrefs.SetInt("Back", 1);
+            }
             GameManager.instance.PlayerDeath(Lives);
         }
     }
@@ -118,11 +133,6 @@ public class Player : MonoBehaviour
 
         anim.SetBool("IsMoving", movement.x != 0 && !anim.GetBool("IsJumping"));
 
-        if (movement.x != 0)
-        {
-            transform.rotation = movement.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.identity;
-        }
-
         if (movement.x > 0)
         {
             facingRight = true;
@@ -131,6 +141,8 @@ public class Player : MonoBehaviour
         {
             facingRight = false;
         }
+
+        transform.rotation = facingRight ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
     }
 
     void Jump()

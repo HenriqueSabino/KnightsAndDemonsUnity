@@ -210,6 +210,7 @@ public class DemonicBat : MonoBehaviour
             {
                 IsAlive = false;
                 rigidbody2D.velocity = new Vector2(0, 5);
+                rigidbody2D.gravityScale = 1;
 
                 PlayerPrefs.SetInt("DefeatedDemonicBat", 1);
 
