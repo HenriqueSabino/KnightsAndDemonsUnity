@@ -52,7 +52,6 @@ public class FlyingEnemy : MonoBehaviour
             if (dist <= 0.1f)
             {
                 Attacking = false;
-                DecidedTarget = false;
                 rigidbody2D.velocity = Vector2.zero;
             }
             else if (dist >= 2.5f)
@@ -77,7 +76,7 @@ public class FlyingEnemy : MonoBehaviour
 
             if (!DecidedTarget)
             {
-                TargetOffset = sprite.flipX ? new Vector3(2, 0.5f) : new Vector3(-2, 0.5f);
+                TargetOffset = (Target.position - transform.position).x > 0 ? new Vector3(-2, 0.5f) : new Vector3(2, 0.5f);
                 DecidedTarget = true;
             }
 
