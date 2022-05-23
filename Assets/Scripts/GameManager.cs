@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance;
     public int PlayerLives;
+    public bool Paused;
+    public UnityEvent<bool> GamePaused;
 
     public RectTransform HealthBar;
     public RectTransform WingsBar;
@@ -39,6 +41,16 @@ public class GameManager : MonoBehaviour
 
         if (BossLevel)
             StartCoroutine(WaitBossDeath());
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            Paused = !Paused;
+            Time.timeScale = Paused ? 0 : 1;
+            GamePaused.Invoke(Paused);
+        }
     }
 
     public void PlayerDeath(int Lives)

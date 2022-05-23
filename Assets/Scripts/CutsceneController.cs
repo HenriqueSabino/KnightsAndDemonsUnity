@@ -11,7 +11,7 @@ public class CutsceneController : MonoBehaviour
     public Button next;
     public string NextScene;
     public bool showOnAwake;
-    public string saveOnPlayerPrefs;
+    public string saveOnPlayerPrefs = "";
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class CutsceneController : MonoBehaviour
         }
         next.gameObject.SetActive(false);
 
-        if (showOnAwake && saveOnPlayerPrefs != "" && !PlayerPrefs.HasKey(saveOnPlayerPrefs))
+        if (showOnAwake && (saveOnPlayerPrefs == "") || (saveOnPlayerPrefs != "" && !PlayerPrefs.HasKey(saveOnPlayerPrefs)))
         {
             ShowCutscene();
         }

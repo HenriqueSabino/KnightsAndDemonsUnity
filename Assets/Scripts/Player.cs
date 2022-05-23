@@ -88,37 +88,40 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TakingDamage && rig.velocity.y == 0)
+        if (!GameManager.instance.Paused)
         {
-            TakingDamage = false;
-        }
-
-        if (isAlive)
-        {
-            if (!TakingDamage)
+            if (TakingDamage && rig.velocity.y == 0)
             {
-                Move();
+                TakingDamage = false;
             }
 
-            if (!TakingDamage || CanUseWings)
+            if (isAlive)
             {
-                Jump();
+                if (!TakingDamage)
+                {
+                    Move();
+                }
+
+                if (!TakingDamage || CanUseWings)
+                {
+                    Jump();
+                }
+
+                Attack();
+            }
+            else
+            {
+                anim.SetBool("IsJumping", true);
             }
 
-            Attack();
-        }
-        else
-        {
-            anim.SetBool("IsJumping", true);
-        }
-
-        if (transform.position.y < -10)
-        {
-            if (WasBack)
+            if (transform.position.y < -10)
             {
-                PlayerPrefs.SetInt("Back", 1);
+                if (WasBack)
+                {
+                    PlayerPrefs.SetInt("Back", 1);
+                }
+                GameManager.instance.PlayerDeath(Lives);
             }
-            GameManager.instance.PlayerDeath(Lives);
         }
     }
 
